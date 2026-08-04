@@ -1,23 +1,13 @@
 from fastapi import FastAPI
 
+from app.api.router import api_router
+from app.core.config import settings
+
 app = FastAPI(
-    title="SentinelAI API",
-    description="Backend API for SentinelAI - Autonomous Self-Healing Enterprise Infrastructure Platform",
-    version="1.0.0"
+    title=settings.PROJECT_NAME,
+    version=settings.VERSION,
+    description=settings.DESCRIPTION,
 )
 
-
-@app.get("/")
-async def root():
-    return {
-        "application": "SentinelAI",
-        "status": "running",
-        "version": "1.0.0"
-    }
-
-
-@app.get("/health")
-async def health_check():
-    return {
-        "status": "healthy"
-    }
+# Register all application routes
+app.include_router(api_router)
