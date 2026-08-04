@@ -2,10 +2,11 @@
 Business logic for Infrastructure Asset management.
 """
 
-from __future__ import annotations
-
 from sqlalchemy.orm import Session
 
+from app.db.repositories.infrastructure_asset_repository import (
+    InfrastructureAssetRepository,
+)
 from app.models.infrastructure_asset import InfrastructureAsset
 from app.schemas.infrastructure_asset import (
     InfrastructureAssetCreate,
@@ -18,14 +19,15 @@ class InfrastructureAssetService:
     Service layer for Infrastructure Asset operations.
     """
 
-    @staticmethod
+    repository = InfrastructureAssetRepository()
+
+    @classmethod
     def create(
+        cls,
         db: Session,
         asset_data: InfrastructureAssetCreate,
     ) -> InfrastructureAsset:
-        """
-        Create a new infrastructure asset.
-        """
+
         asset = InfrastructureAsset(
             hostname=asset_data.hostname,
             ip_address=str(asset_data.ip_address),
@@ -38,49 +40,30 @@ class InfrastructureAssetService:
             is_active=True,
         )
 
-        db.add(asset)
-        db.commit()
-        db.refresh(asset)
+        return cls.repository.create(db, asset)
 
-        return asset
+    @classmethod
+    def get_all(
+        cls,
+        db: Session,
+    ) -> list[InfrastructureAsset]:
+        return cls.repository.get_all(db)
 
-    @staticmethod
-    def get_all(db: Session) -> list[InfrastructureAsset]:
-        """
-        Return all active infrastructure assets.
-        """
-        return (
-            db.query(InfrastructureAsset)
-            .filter(InfrastructureAsset.is_active.is_(True))
-            .all()
-        )
-
-    @staticmethod
+    @classmethod
     def get_by_id(
+        cls,
         db: Session,
         asset_id: int,
     ) -> InfrastructureAsset | None:
-        """
-        Return a single infrastructure asset.
-        """
-        return (
-            db.query(InfrastructureAsset)
-            .filter(
-                InfrastructureAsset.id == asset_id,
-                InfrastructureAsset.is_active.is_(True),
-            )
-            .first()
-        )
+        return cls.repository.get_by_id(db, asset_id)
 
-    @staticmethod
+    @classmethod
     def update(
+        cls,
         db: Session,
         asset: InfrastructureAsset,
         asset_data: InfrastructureAssetUpdate,
     ) -> InfrastructureAsset:
-        """
-        Update an existing infrastructure asset.
-        """
 
         update_data = asset_data.model_dump(exclude_unset=True)
 
@@ -90,23 +73,12 @@ class InfrastructureAssetService:
 
             setattr(asset, field, value)
 
-        db.commit()
-        db.refresh(asset)
+        return cls.repository.update(db, asset)
 
-        return asset
-
-    @staticmethod
+    @classmethod
     def soft_delete(
+        cls,
         db: Session,
         asset: InfrastructureAsset,
     ) -> InfrastructureAsset:
-        """
-        Soft delete an infrastructure asset.
-        """
-
-        asset.is_active = False
-
-        db.commit()
-        db.refresh(asset)
-
-        return asset
+        return cls.repository.soft_delete(db, asset)
