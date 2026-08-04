@@ -1,26 +1,38 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 
 from app.api.router import api_router
 from app.core.config import settings
 from app.core.exceptions import register_exception_handlers
 from app.core.logger import logger
+from app.db.session import check_database_connection
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    Application startup and shutdown.
+    """
+    logger.info("%s Backend Started", settings.PROJECT_NAME)
+    logger.info("Environment: %s", settings.ENVIRONMENT)
+    logger.info("Version: %s", settings.VERSION)
+
+    if not check_database_connection():
+        logger.warning("Application started without an active database connection.")
+
+    yield
+
+    logger.info("SentinelAI Backend Shutdown")
+
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
     description=settings.DESCRIPTION,
+    lifespan=lifespan,
 )
 
 register_exception_handlers(app)
 
 app.include_router(api_router)
-
-
-@app.on_event("startup")
-async def startup_event() -> None:
-    """
-    Log application startup information.
-    """
-    logger.info("%s Backend Started", settings.PROJECT_NAME)
-    logger.info("Environment: %s", settings.ENVIRONMENT)
-    logger.info("Version: %s", settings.VERSION)
