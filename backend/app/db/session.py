@@ -8,7 +8,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 from app.core.config import settings
 from app.core.logger import logger
-
+from app.db.base import Base
 engine = create_engine(
     settings.DATABASE_URL,
     pool_pre_ping=True,
