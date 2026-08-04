@@ -1,38 +1,59 @@
 """
 Health and root endpoints.
-
-Contains endpoints used to verify that the application
-is running correctly.
 """
 
+from pydantic import BaseModel
 from fastapi import APIRouter
 
 from app.core.config import settings
+from app.schemas.response import SuccessResponse
 
 router = APIRouter(tags=["Health"])
 
 
-@router.get("/", summary="Root Endpoint")
-async def root() -> dict[str, str]:
+class RootData(BaseModel):
+    application: str
+    version: str
+    status: str
+
+
+class HealthData(BaseModel):
+    status: str
+
+
+@router.get(
+    "/",
+    summary="Root Endpoint",
+    response_model=SuccessResponse[RootData],
+)
+async def root() -> SuccessResponse[RootData]:
     """
     Root endpoint.
 
     Returns basic application information.
     """
-    return {
-        "application": settings.PROJECT_NAME,
-        "status": "running",
-        "version": settings.VERSION,
-    }
+    return SuccessResponse(
+        message="SentinelAI Backend Running",
+        data=RootData(
+            application=settings.PROJECT_NAME,
+            version=settings.VERSION,
+            status="running",
+        ),
+    )
 
 
-@router.get("/health", summary="Health Check")
-async def health() -> dict[str, str]:
+@router.get(
+    "/health",
+    summary="Health Check",
+    response_model=SuccessResponse[HealthData],
+)
+async def health() -> SuccessResponse[HealthData]:
     """
     Health check endpoint.
-
-    Used to verify that the API is running.
     """
-    return {
-        "status": "healthy",
-    }
+    return SuccessResponse(
+        message="Health Check Successful",
+        data=HealthData(
+            status="healthy",
+        ),
+    )
