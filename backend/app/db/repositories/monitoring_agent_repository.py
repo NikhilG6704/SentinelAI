@@ -2,10 +2,15 @@
 Monitoring Agent Repository.
 """
 
+from datetime import datetime, timezone
+
 from sqlalchemy.orm import Session
 
 from app.db.repositories.base_repository import BaseRepository
-from app.models.monitoring_agent import MonitoringAgent
+from app.models.monitoring_agent import (
+    AgentStatus,
+    MonitoringAgent,
+)
 
 
 class MonitoringAgentRepository(BaseRepository[MonitoringAgent]):
@@ -45,3 +50,53 @@ class MonitoringAgentRepository(BaseRepository[MonitoringAgent]):
             )
             .all()
         )
+
+    def update_heartbeat(
+        self,
+        db: Session,
+        agent: MonitoringAgent,
+    ) -> MonitoringAgent:
+        """
+        Update the monitoring agent heartbeat and mark it online.
+        """
+
+        agent.last_heartbeat = datetime.now(timezone.utc)
+        agent.status = AgentStatus.ONLINE
+
+        db.commit()
+        db.refresh(agent)
+
+        return agent
+
+    def set_status(
+        self,
+        db: Session,
+        agent: MonitoringAgent,
+        status: AgentStatus,
+    ) -> MonitoringAgent:
+        """
+        Update the monitoring agent status.
+        """
+
+        agent.status = status
+
+        db.commit()
+        db.refresh(agent)
+
+        return agent
+
+    def deactivate(
+        self,
+        db: Session,
+        agent: MonitoringAgent,
+    ) -> MonitoringAgent:
+        """
+        Soft delete a monitoring agent.
+        """
+
+        agent.is_active = False
+
+        db.commit()
+        db.refresh(agent)
+
+        return agent

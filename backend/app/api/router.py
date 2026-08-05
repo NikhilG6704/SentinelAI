@@ -3,7 +3,7 @@ Central API Router.
 """
 
 from fastapi import APIRouter
-
+from app.api.routes.dashboard import router as dashboard_router
 from app.api.routes.health import router as health_router
 from app.api.routes.infrastructure_asset import (
     router as infrastructure_asset_router,
@@ -20,3 +20,4 @@ api_router.include_router(health_router)
 api_router.include_router(infrastructure_asset_router)
 api_router.include_router(monitoring_agent_router)
 api_router.include_router(system_metric_router)
+api_router.include_router(dashboard_router)
