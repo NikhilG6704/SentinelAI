@@ -61,6 +61,11 @@ class MonitoringAgent(BaseModel):
         nullable=False,
         default=AgentStatus.ONLINE,
     )
+    metrics = relationship(
+    "SystemMetric",
+    back_populates="monitoring_agent",
+    cascade="all, delete-orphan",
+)
 
     infrastructure_asset = relationship(
         "InfrastructureAsset",
@@ -72,9 +77,3 @@ class MonitoringAgent(BaseModel):
     nullable=False,
     default=True,
 )
-
-    # metrics = relationship(
-    #     "SystemMetric",
-    #     back_populates="monitoring_agent",
-    #     cascade="all, delete-orphan",
-    # )

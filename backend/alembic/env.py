@@ -6,19 +6,17 @@ from alembic import context
 from sqlalchemy import engine_from_config, pool
 
 from app.core.config import settings
-
-from app.models import InfrastructureAsset
 from app.db.base_metadata import target_metadata
 
 config = context.config
 
-# Inject DATABASE_URL from the application settings
-config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
+config.set_main_option(
+    "sqlalchemy.url",
+    settings.DATABASE_URL,
+)
 
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
-
-
 
 
 def run_migrations_offline() -> None:

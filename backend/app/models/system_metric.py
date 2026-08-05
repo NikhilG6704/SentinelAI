@@ -1,27 +1,23 @@
-"""
-System Metric ORM model.
-"""
-
 from __future__ import annotations
 
 from datetime import datetime
 
-from sqlalchemy import DateTime, Float, ForeignKey
+from sqlalchemy import (
+    DateTime,
+    Float,
+    ForeignKey,
+    Integer,
+)
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.models.base_model import BaseModel
+from app.models.base import BaseModel
 
 
 class SystemMetric(BaseModel):
-    """
-    Stores one snapshot of system metrics collected
-    from a monitoring agent.
-    """
-
     __tablename__ = "system_metrics"
 
     monitoring_agent_id: Mapped[int] = mapped_column(
-        ForeignKey("monitoring_agents.id", ondelete="CASCADE"),
+        ForeignKey("monitoring_agents.id"),
         nullable=False,
         index=True,
     )
@@ -52,6 +48,7 @@ class SystemMetric(BaseModel):
     )
 
     uptime_seconds: Mapped[int] = mapped_column(
+        Integer,
         nullable=False,
     )
 

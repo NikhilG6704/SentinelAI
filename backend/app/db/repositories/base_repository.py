@@ -34,24 +34,23 @@ class BaseRepository(Generic[ModelType]):
         db: Session,
         obj_id: int,
     ) -> ModelType | None:
-        return (
-            db.query(self.model)
-            .filter(
-                self.model.id == obj_id,
-                self.model.is_active.is_(True),
-            )
-            .first()
-        )
+        query = db.query(self.model).filter(self.model.id == obj_id)
+
+        if hasattr(self.model, "is_active"):
+            query = query.filter(self.model.is_active.is_(True))
+
+        return query.first()
 
     def get_all(
         self,
         db: Session,
     ) -> list[ModelType]:
-        return (
-            db.query(self.model)
-            .filter(self.model.is_active.is_(True))
-            .all()
-        )
+        query = db.query(self.model)
+
+        if hasattr(self.model, "is_active"):
+            query = query.filter(self.model.is_active.is_(True))
+
+        return query.all()
 
     def update(
         self,
@@ -67,7 +66,9 @@ class BaseRepository(Generic[ModelType]):
         db: Session,
         obj: ModelType,
     ) -> ModelType:
-        obj.is_active = False
-        db.commit()
-        db.refresh(obj)
+        if hasattr(obj, "is_active"):
+            obj.is_active = False
+            db.commit()
+            db.refresh(obj)
+
         return obj
