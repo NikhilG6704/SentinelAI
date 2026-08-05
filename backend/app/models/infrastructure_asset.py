@@ -11,6 +11,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 
 from app.core.enums import AssetStatus, AssetType, EnvironmentType
 from app.models.base import BaseModel
+from sqlalchemy.orm import relationship
 
 
 class InfrastructureAsset(BaseModel):
@@ -69,6 +70,11 @@ class InfrastructureAsset(BaseModel):
         nullable=False,
         default=True,
     )
+    monitoring_agents = relationship(
+    "MonitoringAgent",
+    back_populates="infrastructure_asset",
+    cascade="all, delete-orphan",
+)
 
     def __repr__(self) -> str:
         return (
