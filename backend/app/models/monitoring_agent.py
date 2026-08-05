@@ -9,7 +9,7 @@ from enum import Enum
 
 from sqlalchemy import DateTime, Enum as SQLEnum, ForeignKey, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import Boolean
+
 from app.models.base import BaseModel
 
 
@@ -62,31 +62,25 @@ class MonitoringAgent(BaseModel):
         default=AgentStatus.ONLINE,
     )
     metrics = relationship(
-    "SystemMetric",
-    back_populates="monitoring_agent",
-    cascade="all, delete-orphan",
-)
+        "SystemMetric",
+        back_populates="monitoring_agent",
+        cascade="all, delete-orphan",
+    )
 
     infrastructure_asset = relationship(
         "InfrastructureAsset",
         back_populates="monitoring_agents",
     )
     incidents = relationship(
-    "Incident",
-    back_populates="monitoring_agent",
-)
+        "Incident",
+        back_populates="monitoring_agent",
+    )
     alerts = relationship(
-    "Alert",
-    back_populates="monitoring_agent",
-)
+        "Alert",
+        back_populates="monitoring_agent",
+    )
     system_logs = relationship(
-    "SystemLog",
-    back_populates="monitoring_agent",
-    cascade="all, delete-orphan",
-)
-
-    is_active: Mapped[bool] = mapped_column(
-    Boolean,
-    nullable=False,
-    default=True,
-)
+        "SystemLog",
+        back_populates="monitoring_agent",
+        cascade="all, delete-orphan",
+    )

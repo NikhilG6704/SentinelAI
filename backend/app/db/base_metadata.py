@@ -13,4 +13,5 @@ from app.models.system_metric import SystemMetric
 from app.models.system_log import SystemLog
 from app.models.notification import Notification
 from app.models.report import Report
+from app.models.automation_rule import AutomationRule
 target_metadata = Base.metadata

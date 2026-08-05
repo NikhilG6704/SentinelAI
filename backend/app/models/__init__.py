@@ -6,6 +6,7 @@ from app.models.alert import Alert
 from app.models.system_log import SystemLog
 from app.models.notification import Notification
 from app.models.report import Report
+from app.models.automation_rule import AutomationRule
 __all__ = [
     "InfrastructureAsset",
     "MonitoringAgent",
@@ -15,4 +16,5 @@ __all__ = [
     "SystemLog",
     "Notification",
     "Report",
+    "AutomationRule",
 ]

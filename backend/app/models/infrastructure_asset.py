@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from typing import Optional
 
-from sqlalchemy import Boolean, Enum, String, Text
+from sqlalchemy import  Enum, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.core.enums import AssetStatus, AssetType, EnvironmentType
@@ -65,29 +65,25 @@ class InfrastructureAsset(BaseModel):
         nullable=True,
     )
 
-    is_active: Mapped[bool] = mapped_column(
-        Boolean,
-        nullable=False,
-        default=True,
-    )
+
     monitoring_agents = relationship(
-    "MonitoringAgent",
-    back_populates="infrastructure_asset",
-    cascade="all, delete-orphan",
-)
+        "MonitoringAgent",
+        back_populates="infrastructure_asset",
+        cascade="all, delete-orphan",
+    )
     incidents = relationship(
-    "Incident",
-    back_populates="infrastructure_asset",
-)
+        "Incident",
+        back_populates="infrastructure_asset",
+    )
     alerts = relationship(
-    "Alert",
-    back_populates="infrastructure_asset",
-)
+        "Alert",
+        back_populates="infrastructure_asset",
+    )
     system_logs = relationship(
-    "SystemLog",
-    back_populates="infrastructure_asset",
-    cascade="all, delete-orphan",
-)
+        "SystemLog",
+        back_populates="infrastructure_asset",
+        cascade="all, delete-orphan",
+    )
 
     def __repr__(self) -> str:
         return (

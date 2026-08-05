@@ -1,8 +1,7 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
-
-from sqlalchemy import DateTime, func
+from sqlalchemy import DateTime, func, Boolean
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db.base import Base
@@ -31,4 +30,9 @@ class BaseModel(Base):
         nullable=False,
         server_default=func.now(),
         onupdate=func.now(),
+    )
+    is_active: Mapped[bool] = mapped_column(
+        Boolean,
+        nullable=False,
+        default=True,
     )
