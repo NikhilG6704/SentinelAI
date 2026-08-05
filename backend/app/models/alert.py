@@ -152,3 +152,8 @@ class Alert(BaseModel):
         "Incident",
         back_populates="alerts",
     )
+    notifications = relationship(
+        "Notification",
+        back_populates="alert",
+        cascade="all, delete-orphan",
+    )
