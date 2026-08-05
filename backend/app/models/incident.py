@@ -7,7 +7,6 @@ from sqlalchemy import (
     DateTime,
     Enum as SQLEnum,
     ForeignKey,
-    Integer,
     String,
     Text,
 )
@@ -47,12 +46,6 @@ class Incident(BaseModel):
         ForeignKey("monitoring_agents.id"),
         nullable=True,
         index=True,
-    )
-
-    # Alert module will be added later.
-    alert_id: Mapped[int | None] = mapped_column(
-        Integer,
-        nullable=True,
     )
 
     incident_title: Mapped[str] = mapped_column(
@@ -105,4 +98,10 @@ class Incident(BaseModel):
     monitoring_agent = relationship(
         "MonitoringAgent",
         back_populates="incidents",
+    )
+
+    alerts = relationship(
+        "Alert",
+        back_populates="incident",
+        cascade="all, delete-orphan",
     )

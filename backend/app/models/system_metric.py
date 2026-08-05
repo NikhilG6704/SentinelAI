@@ -61,3 +61,8 @@ class SystemMetric(BaseModel):
         "MonitoringAgent",
         back_populates="metrics",
     )
+
+    alerts = relationship(
+        "Alert",
+        back_populates="system_metric",
+    )

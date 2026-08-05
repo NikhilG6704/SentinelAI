@@ -79,6 +79,10 @@ class InfrastructureAsset(BaseModel):
     "Incident",
     back_populates="infrastructure_asset",
 )
+    alerts = relationship(
+    "Alert",
+    back_populates="infrastructure_asset",
+)
 
     def __repr__(self) -> str:
         return (

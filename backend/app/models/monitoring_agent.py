@@ -75,6 +75,10 @@ class MonitoringAgent(BaseModel):
     "Incident",
     back_populates="monitoring_agent",
 )
+    alerts = relationship(
+    "Alert",
+    back_populates="monitoring_agent",
+)
 
     is_active: Mapped[bool] = mapped_column(
     Boolean,
