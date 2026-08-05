@@ -75,6 +75,10 @@ class InfrastructureAsset(BaseModel):
     back_populates="infrastructure_asset",
     cascade="all, delete-orphan",
 )
+    incidents = relationship(
+    "Incident",
+    back_populates="infrastructure_asset",
+)
 
     def __repr__(self) -> str:
         return (
