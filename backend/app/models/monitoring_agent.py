@@ -79,6 +79,11 @@ class MonitoringAgent(BaseModel):
     "Alert",
     back_populates="monitoring_agent",
 )
+    system_logs = relationship(
+    "SystemLog",
+    back_populates="monitoring_agent",
+    cascade="all, delete-orphan",
+)
 
     is_active: Mapped[bool] = mapped_column(
     Boolean,

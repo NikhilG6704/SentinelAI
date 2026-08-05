@@ -83,6 +83,11 @@ class InfrastructureAsset(BaseModel):
     "Alert",
     back_populates="infrastructure_asset",
 )
+    system_logs = relationship(
+    "SystemLog",
+    back_populates="infrastructure_asset",
+    cascade="all, delete-orphan",
+)
 
     def __repr__(self) -> str:
         return (
