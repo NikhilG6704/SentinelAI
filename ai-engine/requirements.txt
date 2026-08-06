@@ -1,0 +1,25 @@
+# Core Data Processing
+pandas>=2.2.0
+numpy>=2.2.0
+
+# Machine Learning (Preprocessing Only)
+scikit-learn>=1.7.0
+
+# HTTP Client
+httpx>=0.28.0
+
+# Configuration
+python-dotenv>=1.1.0
+
+# Data Export
+pyarrow>=21.0.0
+
+# Logging
+loguru>=0.7.3
+
+# Testing
+pytest>=8.4.0
+pytest-asyncio>=1.1.0
+
+# Type Checking
+typing-extensions>=4.14.0
