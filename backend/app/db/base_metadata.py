@@ -14,4 +14,6 @@ from app.models.system_log import SystemLog
 from app.models.notification import Notification
 from app.models.report import Report
 from app.models.automation_rule import AutomationRule
+from app.models.recovery_workflow import RecoveryWorkflow
+from app.models.audit_log import AuditLog
 target_metadata = Base.metadata

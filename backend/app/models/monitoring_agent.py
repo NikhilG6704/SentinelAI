@@ -9,7 +9,7 @@ from enum import Enum
 
 from sqlalchemy import DateTime, Enum as SQLEnum, ForeignKey, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-
+from sqlalchemy import Boolean
 from app.models.base import BaseModel
 
 
@@ -84,3 +84,9 @@ class MonitoringAgent(BaseModel):
         back_populates="monitoring_agent",
         cascade="all, delete-orphan",
     )
+
+    is_active: Mapped[bool] = mapped_column(
+    Boolean,
+    nullable=False,
+    default=True,
+)

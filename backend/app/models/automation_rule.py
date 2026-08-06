@@ -131,6 +131,12 @@ class AutomationRule(BaseModel):
         default=True,
     )
 
+    # Used for soft delete
+    is_active: Mapped[bool] = mapped_column(
+        Boolean,
+        nullable=False,
+        default=True,
+    )
 
     priority: Mapped[int] = mapped_column(
         Integer,

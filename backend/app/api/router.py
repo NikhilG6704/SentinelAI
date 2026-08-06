@@ -20,6 +20,12 @@ from app.api.routes.monitoring_agent import (
 from app.api.routes.system_metric import (
     router as system_metric_router,
 )
+from app.api.routes.recovery_workflow import (
+    router as recovery_workflow_router,
+)
+from app.api.routes.audit_log import (
+    router as audit_log_router,
+)
 api_router = APIRouter()
 
 api_router.include_router(health_router)
@@ -33,3 +39,5 @@ api_router.include_router(system_log_router)
 api_router.include_router(notification_router)
 api_router.include_router(report_router)
 api_router.include_router(automation_rule_router)
+api_router.include_router(recovery_workflow_router)
+api_router.include_router(audit_log_router)
