@@ -2049,3 +2049,163 @@
 2026-08-06 16:00:36.682 | SUCCESS  | failure_prediction.random_forest:train:69 - Random Forest training completed.
 2026-08-06 16:00:36.718 | SUCCESS  | failure_prediction.random_forest:save:132 - Model saved to /private/var/folders/71/m_cwb65x7wlfvb2vnq3frct00000gn/T/pytest-of-nikhil/pytest-32/test_save_load2/rf.joblib
 2026-08-06 16:00:36.743 | SUCCESS  | failure_prediction.random_forest:load:145 - Model loaded from /private/var/folders/71/m_cwb65x7wlfvb2vnq3frct00000gn/T/pytest-of-nikhil/pytest-32/test_save_load2/rf.joblib
+2026-08-06 16:05:08.234 | INFO     | anomaly_detection.autoencoder:train:104 - Training Autoencoder...
+2026-08-06 16:05:09.058 | INFO     | anomaly_detection.autoencoder:train:157 - Epoch 1/2 Loss=0.974212
+2026-08-06 16:05:09.061 | INFO     | anomaly_detection.autoencoder:train:157 - Epoch 2/2 Loss=0.978281
+2026-08-06 16:05:09.120 | SUCCESS  | anomaly_detection.autoencoder:train:182 - Autoencoder training completed.
+2026-08-06 16:05:09.124 | INFO     | anomaly_detection.autoencoder:train:104 - Training Autoencoder...
+2026-08-06 16:05:09.128 | INFO     | anomaly_detection.autoencoder:train:157 - Epoch 1/2 Loss=0.974212
+2026-08-06 16:05:09.131 | INFO     | anomaly_detection.autoencoder:train:157 - Epoch 2/2 Loss=0.978281
+2026-08-06 16:05:09.195 | SUCCESS  | anomaly_detection.autoencoder:train:182 - Autoencoder training completed.
+2026-08-06 16:05:09.197 | INFO     | anomaly_detection.autoencoder:train:104 - Training Autoencoder...
+2026-08-06 16:05:09.201 | INFO     | anomaly_detection.autoencoder:train:157 - Epoch 1/2 Loss=0.974212
+2026-08-06 16:05:09.204 | INFO     | anomaly_detection.autoencoder:train:157 - Epoch 2/2 Loss=0.978281
+2026-08-06 16:05:09.268 | SUCCESS  | anomaly_detection.autoencoder:train:182 - Autoencoder training completed.
+2026-08-06 16:05:09.271 | INFO     | anomaly_detection.autoencoder:train:104 - Training Autoencoder...
+2026-08-06 16:05:09.275 | INFO     | anomaly_detection.autoencoder:train:157 - Epoch 1/2 Loss=0.974212
+2026-08-06 16:05:09.278 | INFO     | anomaly_detection.autoencoder:train:157 - Epoch 2/2 Loss=0.978281
+2026-08-06 16:05:09.342 | SUCCESS  | anomaly_detection.autoencoder:train:182 - Autoencoder training completed.
+2026-08-06 16:05:09.345 | SUCCESS  | anomaly_detection.autoencoder:save:254 - Saved model to /private/var/folders/71/m_cwb65x7wlfvb2vnq3frct00000gn/T/pytest-of-nikhil/pytest-33/test_save_load0/autoencoder.pt
+2026-08-06 16:05:09.347 | SUCCESS  | anomaly_detection.autoencoder:load:284 - Loaded model from /private/var/folders/71/m_cwb65x7wlfvb2vnq3frct00000gn/T/pytest-of-nikhil/pytest-33/test_save_load0/autoencoder.pt
+2026-08-06 16:05:09.367 | INFO     | preprocessing.data_cleaning:remove_duplicates:29 - Removed 1 duplicate records.
+2026-08-06 16:05:09.369 | INFO     | preprocessing.data_cleaning:clip_percentage_columns:148 - Percentage columns validated.
+2026-08-06 16:05:09.370 | INFO     | preprocessing.data_cleaning:fill_missing_numeric:100 - Numeric missing values filled.
+2026-08-06 16:05:09.371 | SUCCESS  | preprocessing.data_loader:fetch_dataframe:95 - /system-metrics: loaded 2 records.
+2026-08-06 16:05:09.372 | SUCCESS  | preprocessing.data_loader:fetch_dataframe:95 - /system-metrics: loaded 0 records.
+2026-08-06 16:05:09.376 | INFO     | failure_prediction.dataset_builder:load_features:33 - Loading engineered features...
+2026-08-06 16:05:09.377 | SUCCESS  | failure_prediction.dataset_builder:load_features:40 - Loaded 2 feature records.
+2026-08-06 16:05:09.377 | INFO     | failure_prediction.dataset_builder:load_incidents:48 - Loading incident history...
+2026-08-06 16:05:09.378 | SUCCESS  | failure_prediction.dataset_builder:load_incidents:55 - Loaded 1 incidents.
+2026-08-06 16:05:09.384 | SUCCESS  | failure_prediction.dataset_builder:build:114 - Unified dataset created with 2 rows.
+2026-08-06 16:05:09.386 | SUCCESS  | failure_prediction.dataset_builder:save:145 - Dataset saved to /private/var/folders/71/m_cwb65x7wlfvb2vnq3frct00000gn/T/pytest-of-nikhil/pytest-33/test_dataset_export0/dataset.csv
+2026-08-06 16:05:09.397 | INFO     | anomaly_detection.isolation_forest:train:54 - Training Isolation Forest...
+2026-08-06 16:05:09.537 | SUCCESS  | anomaly_detection.isolation_forest:train:62 - Isolation Forest training completed.
+2026-08-06 16:05:09.537 | INFO     | anomaly_detection.evaluator:evaluate:44 - Evaluating IsolationForestDetector
+2026-08-06 16:05:09.555 | SUCCESS  | anomaly_detection.evaluator:evaluate:105 - Evaluation completed for IsolationForestDetector
+2026-08-06 16:05:09.559 | INFO     | failure_prediction.random_forest:train:58 - Training Random Forest...
+2026-08-06 16:05:09.738 | SUCCESS  | failure_prediction.random_forest:train:69 - Random Forest training completed.
+2026-08-06 16:05:09.738 | INFO     | failure_prediction.evaluator:evaluate:39 - Evaluating RandomForestFailurePredictor
+2026-08-06 16:05:09.795 | SUCCESS  | failure_prediction.evaluator:evaluate:96 - Evaluation completed.
+2026-08-06 16:05:09.811 | INFO     | failure_prediction.feature_selector:fit:38 - Calculating feature importance...
+2026-08-06 16:05:09.955 | SUCCESS  | failure_prediction.feature_selector:fit:58 - Feature importance calculated.
+2026-08-06 16:05:09.957 | INFO     | failure_prediction.feature_selector:fit:38 - Calculating feature importance...
+2026-08-06 16:05:10.086 | SUCCESS  | failure_prediction.feature_selector:fit:58 - Feature importance calculated.
+2026-08-06 16:05:10.088 | INFO     | anomaly_detection.isolation_forest:train:54 - Training Isolation Forest...
+2026-08-06 16:05:10.199 | SUCCESS  | anomaly_detection.isolation_forest:train:62 - Isolation Forest training completed.
+2026-08-06 16:05:10.199 | INFO     | anomaly_detection.inference:predict:51 - Running inference using IsolationForestDetector
+2026-08-06 16:05:10.209 | SUCCESS  | anomaly_detection.inference:predict:87 - Inference completed (100 samples).
+2026-08-06 16:05:10.210 | INFO     | anomaly_detection.isolation_forest:train:54 - Training Isolation Forest...
+2026-08-06 16:05:10.334 | SUCCESS  | anomaly_detection.isolation_forest:train:62 - Isolation Forest training completed.
+2026-08-06 16:05:10.334 | INFO     | anomaly_detection.inference:predict:51 - Running inference using IsolationForestDetector
+2026-08-06 16:05:10.344 | SUCCESS  | anomaly_detection.inference:predict:87 - Inference completed (100 samples).
+2026-08-06 16:05:10.345 | INFO     | anomaly_detection.isolation_forest:train:54 - Training Isolation Forest...
+2026-08-06 16:05:10.466 | SUCCESS  | anomaly_detection.isolation_forest:train:62 - Isolation Forest training completed.
+2026-08-06 16:05:10.466 | INFO     | anomaly_detection.inference:predict:51 - Running inference using IsolationForestDetector
+2026-08-06 16:05:10.476 | SUCCESS  | anomaly_detection.inference:predict:87 - Inference completed (100 samples).
+2026-08-06 16:05:10.477 | INFO     | anomaly_detection.isolation_forest:train:54 - Training Isolation Forest...
+2026-08-06 16:05:10.591 | SUCCESS  | anomaly_detection.isolation_forest:train:62 - Isolation Forest training completed.
+2026-08-06 16:05:10.591 | INFO     | anomaly_detection.inference:predict:51 - Running inference using IsolationForestDetector
+2026-08-06 16:05:10.601 | SUCCESS  | anomaly_detection.inference:predict:87 - Inference completed (100 samples).
+2026-08-06 16:05:10.602 | INFO     | anomaly_detection.isolation_forest:train:54 - Training Isolation Forest...
+2026-08-06 16:05:10.718 | SUCCESS  | anomaly_detection.isolation_forest:train:62 - Isolation Forest training completed.
+2026-08-06 16:05:10.719 | INFO     | anomaly_detection.isolation_forest:train:54 - Training Isolation Forest...
+2026-08-06 16:05:10.833 | SUCCESS  | anomaly_detection.isolation_forest:train:62 - Isolation Forest training completed.
+2026-08-06 16:05:10.840 | INFO     | anomaly_detection.isolation_forest:train:54 - Training Isolation Forest...
+2026-08-06 16:05:10.956 | SUCCESS  | anomaly_detection.isolation_forest:train:62 - Isolation Forest training completed.
+2026-08-06 16:05:10.964 | INFO     | anomaly_detection.isolation_forest:train:54 - Training Isolation Forest...
+2026-08-06 16:05:11.077 | SUCCESS  | anomaly_detection.isolation_forest:train:62 - Isolation Forest training completed.
+2026-08-06 16:05:11.108 | SUCCESS  | anomaly_detection.isolation_forest:save:120 - Model saved to /private/var/folders/71/m_cwb65x7wlfvb2vnq3frct00000gn/T/pytest-of-nikhil/pytest-33/test_save_load1/iforest.joblib
+2026-08-06 16:05:11.129 | SUCCESS  | anomaly_detection.isolation_forest:load:133 - Model loaded from /private/var/folders/71/m_cwb65x7wlfvb2vnq3frct00000gn/T/pytest-of-nikhil/pytest-33/test_save_load1/iforest.joblib
+2026-08-06 16:05:11.143 | INFO     | failure_prediction.label_generator:generate:33 - Generating labels using 0:30:00 window...
+2026-08-06 16:05:11.146 | SUCCESS  | failure_prediction.label_generator:generate:112 - Generated labels (Positive=2, Negative=2)
+2026-08-06 16:05:11.147 | INFO     | failure_prediction.label_generator:generate:33 - Generating labels using 0:30:00 window...
+2026-08-06 16:05:11.149 | SUCCESS  | failure_prediction.label_generator:generate:112 - Generated labels (Positive=2, Negative=2)
+2026-08-06 16:05:11.151 | INFO     | failure_prediction.label_generator:generate:33 - Generating labels using 0:30:00 window...
+2026-08-06 16:05:11.151 | INFO     | anomaly_detection.model_selector:select_best:36 - Selecting best model using 'f1_score'.
+2026-08-06 16:05:11.151 | SUCCESS  | anomaly_detection.model_selector:select_best:68 - Selected model: AutoencoderDetector
+2026-08-06 16:05:11.152 | INFO     | anomaly_detection.model_selector:select_best:36 - Selecting best model using 'f1_score'.
+2026-08-06 16:05:11.152 | WARNING  | anomaly_detection.model_selector:select_best:57 - Metric 'f1_score' not available. Falling back to lowest inference latency.
+2026-08-06 16:05:11.152 | SUCCESS  | anomaly_detection.model_selector:select_best:68 - Selected model: IsolationForestDetector
+2026-08-06 16:05:11.155 | SUCCESS  | preprocessing.normalization:fit_transform:54 - standard normalization applied to 2 columns.
+2026-08-06 16:05:11.157 | SUCCESS  | preprocessing.normalization:fit_transform:54 - minmax normalization applied to 1 columns.
+2026-08-06 16:05:11.159 | SUCCESS  | preprocessing.normalization:fit_transform:54 - standard normalization applied to 1 columns.
+2026-08-06 16:05:11.160 | WARNING  | preprocessing.normalization:fit_transform:47 - No valid columns found for normalization.
+2026-08-06 16:05:11.162 | INFO     | preprocessing.pipeline:clean_data:89 - Cleaning datasets...
+2026-08-06 16:05:11.162 | INFO     | preprocessing.data_cleaning:clean:158 - Starting data cleaning pipeline...
+2026-08-06 16:05:11.164 | INFO     | preprocessing.data_cleaning:remove_duplicates:29 - Removed 0 duplicate records.
+2026-08-06 16:05:11.164 | INFO     | preprocessing.data_cleaning:standardize_timestamps:50 - Timestamp normalization completed.
+2026-08-06 16:05:11.164 | INFO     | preprocessing.data_cleaning:fill_missing_numeric:100 - Numeric missing values filled.
+2026-08-06 16:05:11.166 | INFO     | preprocessing.data_cleaning:fill_missing_categorical:125 - Categorical missing values filled.
+2026-08-06 16:05:11.166 | INFO     | preprocessing.data_cleaning:clip_percentage_columns:148 - Percentage columns validated.
+2026-08-06 16:05:11.166 | SUCCESS  | preprocessing.data_cleaning:clean:179 - Data cleaning completed.
+2026-08-06 16:05:11.166 | INFO     | preprocessing.data_cleaning:clean:158 - Starting data cleaning pipeline...
+2026-08-06 16:05:11.167 | INFO     | preprocessing.data_cleaning:remove_duplicates:29 - Removed 0 duplicate records.
+2026-08-06 16:05:11.167 | INFO     | preprocessing.data_cleaning:standardize_timestamps:50 - Timestamp normalization completed.
+2026-08-06 16:05:11.167 | INFO     | preprocessing.data_cleaning:remove_invalid_records:76 - Removed 0 invalid timestamp records.
+2026-08-06 16:05:11.168 | INFO     | preprocessing.data_cleaning:fill_missing_numeric:100 - Numeric missing values filled.
+2026-08-06 16:05:11.168 | INFO     | preprocessing.data_cleaning:fill_missing_categorical:125 - Categorical missing values filled.
+2026-08-06 16:05:11.168 | INFO     | preprocessing.data_cleaning:clip_percentage_columns:148 - Percentage columns validated.
+2026-08-06 16:05:11.168 | SUCCESS  | preprocessing.data_cleaning:clean:179 - Data cleaning completed.
+2026-08-06 16:05:11.168 | INFO     | preprocessing.data_cleaning:clean:158 - Starting data cleaning pipeline...
+2026-08-06 16:05:11.169 | INFO     | preprocessing.data_cleaning:remove_duplicates:29 - Removed 0 duplicate records.
+2026-08-06 16:05:11.169 | INFO     | preprocessing.data_cleaning:standardize_timestamps:50 - Timestamp normalization completed.
+2026-08-06 16:05:11.171 | INFO     | preprocessing.data_cleaning:remove_invalid_records:76 - Removed 0 invalid timestamp records.
+2026-08-06 16:05:11.174 | INFO     | preprocessing.data_cleaning:fill_missing_numeric:100 - Numeric missing values filled.
+2026-08-06 16:05:11.174 | INFO     | preprocessing.data_cleaning:fill_missing_categorical:125 - Categorical missing values filled.
+2026-08-06 16:05:11.177 | INFO     | preprocessing.data_cleaning:clip_percentage_columns:148 - Percentage columns validated.
+2026-08-06 16:05:11.177 | SUCCESS  | preprocessing.data_cleaning:clean:179 - Data cleaning completed.
+2026-08-06 16:05:11.177 | INFO     | preprocessing.data_cleaning:clean:158 - Starting data cleaning pipeline...
+2026-08-06 16:05:11.177 | INFO     | preprocessing.data_cleaning:remove_duplicates:29 - Removed 0 duplicate records.
+2026-08-06 16:05:11.177 | INFO     | preprocessing.data_cleaning:standardize_timestamps:50 - Timestamp normalization completed.
+2026-08-06 16:05:11.177 | INFO     | preprocessing.data_cleaning:fill_missing_numeric:100 - Numeric missing values filled.
+2026-08-06 16:05:11.177 | INFO     | preprocessing.data_cleaning:fill_missing_categorical:125 - Categorical missing values filled.
+2026-08-06 16:05:11.178 | INFO     | preprocessing.data_cleaning:clip_percentage_columns:148 - Percentage columns validated.
+2026-08-06 16:05:11.178 | SUCCESS  | preprocessing.data_cleaning:clean:179 - Data cleaning completed.
+2026-08-06 16:05:11.178 | INFO     | preprocessing.data_cleaning:clean:158 - Starting data cleaning pipeline...
+2026-08-06 16:05:11.178 | INFO     | preprocessing.data_cleaning:remove_duplicates:29 - Removed 0 duplicate records.
+2026-08-06 16:05:11.178 | INFO     | preprocessing.data_cleaning:standardize_timestamps:50 - Timestamp normalization completed.
+2026-08-06 16:05:11.179 | INFO     | preprocessing.data_cleaning:remove_invalid_records:76 - Removed 0 invalid timestamp records.
+2026-08-06 16:05:11.179 | INFO     | preprocessing.data_cleaning:fill_missing_numeric:100 - Numeric missing values filled.
+2026-08-06 16:05:11.179 | INFO     | preprocessing.data_cleaning:fill_missing_categorical:125 - Categorical missing values filled.
+2026-08-06 16:05:11.179 | INFO     | preprocessing.data_cleaning:clip_percentage_columns:148 - Percentage columns validated.
+2026-08-06 16:05:11.179 | SUCCESS  | preprocessing.data_cleaning:clean:179 - Data cleaning completed.
+2026-08-06 16:05:11.179 | INFO     | preprocessing.data_cleaning:clean:158 - Starting data cleaning pipeline...
+2026-08-06 16:05:11.179 | INFO     | preprocessing.data_cleaning:remove_duplicates:29 - Removed 0 duplicate records.
+2026-08-06 16:05:11.179 | INFO     | preprocessing.data_cleaning:standardize_timestamps:50 - Timestamp normalization completed.
+2026-08-06 16:05:11.179 | INFO     | preprocessing.data_cleaning:fill_missing_numeric:100 - Numeric missing values filled.
+2026-08-06 16:05:11.180 | INFO     | preprocessing.data_cleaning:fill_missing_categorical:125 - Categorical missing values filled.
+2026-08-06 16:05:11.180 | INFO     | preprocessing.data_cleaning:clip_percentage_columns:148 - Percentage columns validated.
+2026-08-06 16:05:11.180 | SUCCESS  | preprocessing.data_cleaning:clean:179 - Data cleaning completed.
+2026-08-06 16:05:11.180 | INFO     | preprocessing.data_cleaning:clean:158 - Starting data cleaning pipeline...
+2026-08-06 16:05:11.180 | INFO     | preprocessing.data_cleaning:remove_duplicates:29 - Removed 0 duplicate records.
+2026-08-06 16:05:11.181 | INFO     | preprocessing.data_cleaning:standardize_timestamps:50 - Timestamp normalization completed.
+2026-08-06 16:05:11.181 | INFO     | preprocessing.data_cleaning:remove_invalid_records:76 - Removed 0 invalid timestamp records.
+2026-08-06 16:05:11.181 | INFO     | preprocessing.data_cleaning:fill_missing_numeric:100 - Numeric missing values filled.
+2026-08-06 16:05:11.182 | INFO     | preprocessing.data_cleaning:fill_missing_categorical:125 - Categorical missing values filled.
+2026-08-06 16:05:11.182 | INFO     | preprocessing.data_cleaning:clip_percentage_columns:148 - Percentage columns validated.
+2026-08-06 16:05:11.182 | SUCCESS  | preprocessing.data_cleaning:clean:179 - Data cleaning completed.
+2026-08-06 16:05:11.182 | INFO     | preprocessing.data_cleaning:clean:158 - Starting data cleaning pipeline...
+2026-08-06 16:05:11.182 | INFO     | preprocessing.data_cleaning:remove_duplicates:29 - Removed 0 duplicate records.
+2026-08-06 16:05:11.182 | INFO     | preprocessing.data_cleaning:standardize_timestamps:50 - Timestamp normalization completed.
+2026-08-06 16:05:11.182 | INFO     | preprocessing.data_cleaning:fill_missing_numeric:100 - Numeric missing values filled.
+2026-08-06 16:05:11.182 | INFO     | preprocessing.data_cleaning:fill_missing_categorical:125 - Categorical missing values filled.
+2026-08-06 16:05:11.182 | INFO     | preprocessing.data_cleaning:clip_percentage_columns:148 - Percentage columns validated.
+2026-08-06 16:05:11.182 | SUCCESS  | preprocessing.data_cleaning:clean:179 - Data cleaning completed.
+2026-08-06 16:05:11.182 | SUCCESS  | preprocessing.pipeline:clean_data:96 - All datasets cleaned.
+2026-08-06 16:05:11.187 | INFO     | preprocessing.feature_engineering:generate:226 - Generating AI features...
+2026-08-06 16:05:11.198 | SUCCESS  | preprocessing.feature_engineering:generate:244 - Feature engineering completed.
+2026-08-06 16:05:11.201 | INFO     | preprocessing.feature_engineering:generate:226 - Generating AI features...
+2026-08-06 16:05:11.206 | SUCCESS  | preprocessing.feature_engineering:generate:244 - Feature engineering completed.
+2026-08-06 16:05:11.208 | SUCCESS  | preprocessing.normalization:fit_transform:54 - standard normalization applied to 12 columns.
+2026-08-06 16:05:11.208 | SUCCESS  | preprocessing.pipeline:normalize:138 - Normalization completed.
+2026-08-06 16:05:11.267 | INFO     | preprocessing.pipeline:export_dataset:165 - Exported metrics
+2026-08-06 16:05:11.268 | INFO     | failure_prediction.random_forest:train:58 - Training Random Forest...
+2026-08-06 16:05:11.449 | SUCCESS  | failure_prediction.random_forest:train:69 - Random Forest training completed.
+2026-08-06 16:05:11.450 | INFO     | failure_prediction.random_forest:train:58 - Training Random Forest...
+2026-08-06 16:05:11.630 | SUCCESS  | failure_prediction.random_forest:train:69 - Random Forest training completed.
+2026-08-06 16:05:11.657 | INFO     | failure_prediction.random_forest:train:58 - Training Random Forest...
+2026-08-06 16:05:11.829 | SUCCESS  | failure_prediction.random_forest:train:69 - Random Forest training completed.
+2026-08-06 16:05:11.855 | INFO     | failure_prediction.random_forest:train:58 - Training Random Forest...
+2026-08-06 16:05:12.034 | SUCCESS  | failure_prediction.random_forest:train:69 - Random Forest training completed.
+2026-08-06 16:05:12.070 | SUCCESS  | failure_prediction.random_forest:save:132 - Model saved to /private/var/folders/71/m_cwb65x7wlfvb2vnq3frct00000gn/T/pytest-of-nikhil/pytest-33/test_save_load2/rf.joblib
+2026-08-06 16:05:12.095 | SUCCESS  | failure_prediction.random_forest:load:145 - Model loaded from /private/var/folders/71/m_cwb65x7wlfvb2vnq3frct00000gn/T/pytest-of-nikhil/pytest-33/test_save_load2/rf.joblib
