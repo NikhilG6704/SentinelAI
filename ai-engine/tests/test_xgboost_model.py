@@ -30,6 +30,7 @@ def test_training():
     model.train(X, y)
 
     assert model.is_trained
+    model.close()
 
 
 def test_prediction():
@@ -43,6 +44,7 @@ def test_prediction():
     pred = model.predict(X)
 
     assert len(pred) == len(X)
+    model.close()
 
 
 def test_probability():
@@ -56,6 +58,7 @@ def test_probability():
     proba = model.predict_proba(X)
 
     assert proba.shape[1] == 2
+    model.close()
 
 
 def test_save_load(tmp_path):
@@ -77,3 +80,5 @@ def test_save_load(tmp_path):
     pred = loaded.predict(X)
 
     assert len(pred) == len(X)
+    loaded.close()
+    model.close()

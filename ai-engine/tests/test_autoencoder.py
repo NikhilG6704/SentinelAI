@@ -43,8 +43,7 @@ def test_prediction():
     assert len(predictions) == len(X)
 
     assert set(predictions).issubset({0, 1})
-
-
+    
 def test_anomaly_scores():
     detector = AutoencoderDetector(
         epochs=2,

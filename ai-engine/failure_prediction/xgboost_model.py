@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-
+import gc
 import joblib
 import numpy as np
 import pandas as pd
@@ -136,6 +136,23 @@ class XGBoostFailurePredictor:
         logger.success(
             f"Model saved to {path}"
         )
+
+    def close(self) -> None:
+        """
+        Explicitly release XGBoost resources.
+        """
+
+        if hasattr(self, "model"):
+            del self.model
+
+        gc.collect()
+
+
+    def __del__(self):
+        try:
+            self.close()
+        except Exception:
+            pass
 
     def load(
         self,
