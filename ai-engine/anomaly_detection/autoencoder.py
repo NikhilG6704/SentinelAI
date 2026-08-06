@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-
+import gc
 import numpy as np
 import pandas as pd
 import torch
@@ -10,6 +10,10 @@ from torch.utils.data import DataLoader, TensorDataset
 
 from anomaly_detection.base_detector import BaseDetector
 from utils.logger import logger
+
+# Limit native threads to reduce runtime conflicts
+torch.set_num_threads(1)
+torch.set_num_interop_threads(1)
 
 
 class Autoencoder(nn.Module):
@@ -27,30 +31,29 @@ class Autoencoder(nn.Module):
         self.encoder = nn.Sequential(
             nn.Linear(input_dim, 64),
             nn.ReLU(),
-
             nn.Linear(64, 32),
             nn.ReLU(),
-
             nn.Linear(32, latent_dim),
         )
 
         self.decoder = nn.Sequential(
             nn.Linear(latent_dim, 32),
             nn.ReLU(),
-
             nn.Linear(32, 64),
             nn.ReLU(),
-
             nn.Linear(64, input_dim),
         )
 
-    def forward(self, x):
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         latent = self.encoder(x)
         reconstructed = self.decoder(latent)
         return reconstructed
 
 
 class AutoencoderDetector(BaseDetector):
+    """
+    Autoencoder-based anomaly detector.
+    """
 
     def __init__(
         self,
@@ -66,30 +69,37 @@ class AutoencoderDetector(BaseDetector):
         self.learning_rate = learning_rate
         self.epochs = epochs
         self.batch_size = batch_size
-
         self.threshold = threshold
 
-        self.device = torch.device(
-            "cuda" if torch.cuda.is_available() else "cpu"
-        )
+        # Device selection
+        # Temporary workaround for macOS 26 + PyTorch MPS runtime issues.
+        if torch.cuda.is_available():
+            self.device = torch.device("cuda")
+        else:
+            self.device = torch.device("cpu")
 
         torch.manual_seed(random_seed)
         np.random.seed(random_seed)
 
-        self.model = None
+        self.model: Autoencoder | None = None
         self.loss_fn = nn.MSELoss()
 
         self.is_trained = False
 
     @staticmethod
-    def _to_numpy(X):
+    def _to_numpy(
+        X: pd.DataFrame | np.ndarray,
+    ) -> np.ndarray:
 
         if isinstance(X, pd.DataFrame):
             return X.to_numpy(dtype=np.float32)
 
         return np.asarray(X, dtype=np.float32)
 
-    def train(self, X):
+    def train(
+        self,
+        X: pd.DataFrame | np.ndarray,
+    ) -> None:
 
         logger.info("Training Autoencoder...")
 
@@ -108,13 +118,15 @@ class AutoencoderDetector(BaseDetector):
         )
 
         dataset = TensorDataset(
-            torch.tensor(X)
+            torch.tensor(X, dtype=torch.float32)
         )
 
         loader = DataLoader(
             dataset,
             batch_size=self.batch_size,
             shuffle=True,
+            num_workers=0,
+            pin_memory=False,
         )
 
         self.model.train()
@@ -143,8 +155,8 @@ class AutoencoderDetector(BaseDetector):
                 epoch_loss += loss.item()
 
             logger.info(
-                f"Epoch {epoch+1}/{self.epochs} "
-                f"Loss={epoch_loss/len(loader):.6f}"
+                f"Epoch {epoch + 1}/{self.epochs} "
+                f"Loss={epoch_loss / len(loader):.6f}"
             )
 
         scores = self.anomaly_score(X)
@@ -157,9 +169,22 @@ class AutoencoderDetector(BaseDetector):
 
         self.is_trained = True
 
+        # Cleanup temporary objects
+        del loader
+        del dataset
+        del optimizer
+
+        gc.collect()
+
+        if self.device.type == "cuda":
+            torch.cuda.empty_cache()
+
         logger.success("Autoencoder training completed.")
 
-    def anomaly_score(self, X):
+    def anomaly_score(
+        self,
+        X: pd.DataFrame | np.ndarray,
+    ) -> np.ndarray:
 
         if self.model is None:
             raise RuntimeError("Model not trained.")
@@ -172,6 +197,7 @@ class AutoencoderDetector(BaseDetector):
 
             tensor = torch.tensor(
                 X,
+                dtype=torch.float32,
                 device=self.device,
             )
 
@@ -182,9 +208,18 @@ class AutoencoderDetector(BaseDetector):
                 dim=1,
             )
 
-        return errors.cpu().numpy()
+            result = errors.cpu().numpy()
 
-    def predict(self, X):
+        del tensor
+        del reconstructed
+        del errors
+
+        return result
+
+    def predict(
+        self,
+        X: pd.DataFrame | np.ndarray,
+    ) -> np.ndarray:
 
         scores = self.anomaly_score(X)
 
@@ -192,7 +227,10 @@ class AutoencoderDetector(BaseDetector):
             scores > self.threshold
         ).astype(int)
 
-    def save(self, path):
+    def save(
+        self,
+        path: str | Path,
+    ) -> None:
 
         if self.model is None:
             raise RuntimeError("Model not trained.")
@@ -215,7 +253,10 @@ class AutoencoderDetector(BaseDetector):
 
         logger.success(f"Saved model to {path}")
 
-    def load(self, path):
+    def load(
+        self,
+        path: str | Path,
+    ) -> None:
 
         checkpoint = torch.load(
             path,
@@ -227,19 +268,14 @@ class AutoencoderDetector(BaseDetector):
 
         state_dict = checkpoint["state_dict"]
 
-        input_dim = (
-            state_dict["encoder.0.weight"]
-            .shape[1]
-        )
+        input_dim = state_dict["encoder.0.weight"].shape[1]
 
         self.model = Autoencoder(
             input_dim=input_dim,
             latent_dim=latent_dim,
         ).to(self.device)
 
-        self.model.load_state_dict(
-            state_dict
-        )
+        self.model.load_state_dict(state_dict)
 
         self.threshold = checkpoint["threshold"]
 

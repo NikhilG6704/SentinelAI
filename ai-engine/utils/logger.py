@@ -34,7 +34,7 @@ logger.add(
     rotation="10 MB",
     retention="10 days",
     compression="zip",
-    enqueue=True,
+    enqueue=False,
     backtrace=True,
     diagnose=settings.DEBUG,
 )
