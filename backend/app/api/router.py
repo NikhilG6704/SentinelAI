@@ -26,6 +26,10 @@ from app.api.routes.recovery_workflow import (
 from app.api.routes.audit_log import (
     router as audit_log_router,
 )
+
+from app.api.routes.ai_gateway import (
+    router as ai_gateway_router,
+)
 api_router = APIRouter()
 
 api_router.include_router(health_router)
@@ -41,3 +45,4 @@ api_router.include_router(report_router)
 api_router.include_router(automation_rule_router)
 api_router.include_router(recovery_workflow_router)
 api_router.include_router(audit_log_router)
+api_router.include_router(ai_gateway_router)
