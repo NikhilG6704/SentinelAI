@@ -220,6 +220,7 @@ class AutoencoderDetector(BaseDetector):
         checkpoint = torch.load(
             path,
             map_location=self.device,
+            weights_only=False,
         )
 
         latent_dim = checkpoint["latent_dim"]
