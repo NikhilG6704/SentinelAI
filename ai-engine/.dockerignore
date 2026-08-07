@@ -1,0 +1,50 @@
+# Git
+.git
+.github
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Test caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# ML artifacts
+mlruns/
+artifacts/
+alerts/
+monitoring_reports/
+dataset_versions/
+datasets/
+logs/
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Models
+models/
+*.joblib
+*.pkl
+*.onnx
+
+# Environment
+.env
+.env.*
+
+temp-env/

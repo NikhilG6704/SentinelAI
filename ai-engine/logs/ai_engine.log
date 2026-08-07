@@ -3091,3 +3091,165 @@
 2026-08-07 15:58:21.997 | SUCCESS  | monitoring.report_generator:save:105 - Saved report to /Users/nikhil/Code/SentinelAI/ai-engine/monitoring_reports/failure_prediction_20260807_102821.json
 2026-08-07 15:59:30.391 | INFO     | monitoring.trigger:run_monitoring:26 - Starting monitoring workflow.
 2026-08-07 15:59:39.982 | INFO     | monitoring.monitoring_manager:monitor:49 - Monitoring 'failure_prediction'.
+2026-08-07 18:45:45.747 | WARNING  | monitoring.alert_manager:create_alert:67 - [AlertSeverity.WARNING] Performance: Performance dropped.
+2026-08-07 18:45:45.748 | WARNING  | monitoring.alert_manager:create_alert:67 - [AlertSeverity.WARNING] Latency: High latency.
+2026-08-07 18:45:45.748 | WARNING  | monitoring.alert_manager:create_alert:67 - [AlertSeverity.CRITICAL] Resources: CPU high.
+2026-08-07 18:45:45.749 | WARNING  | monitoring.alert_manager:create_alert:67 - [AlertSeverity.WARNING] Data Drift: Feature distribution drift detected.
+2026-08-07 18:45:45.749 | WARNING  | monitoring.alert_manager:create_alert:67 - [AlertSeverity.WARNING] Concept Drift: Prediction behaviour drift detected.
+2026-08-07 18:45:45.749 | WARNING  | monitoring.alert_manager:create_alert:67 - [AlertSeverity.CRITICAL] Performance: Model performance degraded.
+2026-08-07 18:45:45.749 | WARNING  | monitoring.alert_manager:create_alert:67 - [AlertSeverity.WARNING] Latency: Inference latency threshold exceeded.
+2026-08-07 18:45:45.749 | WARNING  | monitoring.alert_manager:create_alert:67 - [AlertSeverity.CRITICAL] Resources: System resource threshold exceeded.
+2026-08-07 18:45:45.766 | INFO     | anomaly_detection.autoencoder:train:104 - Training Autoencoder...
+2026-08-07 18:45:46.648 | INFO     | anomaly_detection.autoencoder:train:157 - Epoch 1/2 Loss=0.974212
+2026-08-07 18:45:46.651 | INFO     | anomaly_detection.autoencoder:train:157 - Epoch 2/2 Loss=0.978281
+2026-08-07 18:45:46.745 | SUCCESS  | anomaly_detection.autoencoder:train:182 - Autoencoder training completed.
+2026-08-07 18:45:46.749 | INFO     | anomaly_detection.autoencoder:train:104 - Training Autoencoder...
+2026-08-07 18:45:46.753 | INFO     | anomaly_detection.autoencoder:train:157 - Epoch 1/2 Loss=0.974212
+2026-08-07 18:45:46.756 | INFO     | anomaly_detection.autoencoder:train:157 - Epoch 2/2 Loss=0.978281
+2026-08-07 18:45:46.849 | SUCCESS  | anomaly_detection.autoencoder:train:182 - Autoencoder training completed.
+2026-08-07 18:45:46.852 | INFO     | anomaly_detection.autoencoder:train:104 - Training Autoencoder...
+2026-08-07 18:45:46.855 | INFO     | anomaly_detection.autoencoder:train:157 - Epoch 1/2 Loss=0.974212
+2026-08-07 18:45:46.859 | INFO     | anomaly_detection.autoencoder:train:157 - Epoch 2/2 Loss=0.978281
+2026-08-07 18:45:46.954 | SUCCESS  | anomaly_detection.autoencoder:train:182 - Autoencoder training completed.
+2026-08-07 18:45:46.956 | INFO     | anomaly_detection.autoencoder:train:104 - Training Autoencoder...
+2026-08-07 18:45:46.960 | INFO     | anomaly_detection.autoencoder:train:157 - Epoch 1/2 Loss=0.974212
+2026-08-07 18:45:46.963 | INFO     | anomaly_detection.autoencoder:train:157 - Epoch 2/2 Loss=0.978281
+2026-08-07 18:45:47.058 | SUCCESS  | anomaly_detection.autoencoder:train:182 - Autoencoder training completed.
+2026-08-07 18:45:47.063 | SUCCESS  | anomaly_detection.autoencoder:save:254 - Saved model to /private/var/folders/71/m_cwb65x7wlfvb2vnq3frct00000gn/T/pytest-of-nikhil/pytest-40/test_save_load0/autoencoder.pt
+2026-08-07 18:45:47.066 | SUCCESS  | anomaly_detection.autoencoder:load:284 - Loaded model from /private/var/folders/71/m_cwb65x7wlfvb2vnq3frct00000gn/T/pytest-of-nikhil/pytest-40/test_save_load0/autoencoder.pt
+2026-08-07 18:45:47.074 | INFO     | retraining.comparison:compare:69 - Model comparison completed.
+2026-08-07 18:45:47.075 | INFO     | retraining.comparison:compare:69 - Model comparison completed.
+2026-08-07 18:45:47.075 | INFO     | retraining.comparison:compare:69 - Model comparison completed.
+2026-08-07 18:45:47.076 | INFO     | retraining.comparison:compare:69 - Model comparison completed.
+2026-08-07 18:45:47.077 | INFO     | retraining.comparison:compare:69 - Model comparison completed.
+2026-08-07 18:45:47.078 | INFO     | monitoring.concept_drift:detect:136 - Concept drift detected=False
+2026-08-07 18:45:47.079 | INFO     | monitoring.concept_drift:detect:136 - Concept drift detected=True
+2026-08-07 18:45:47.079 | INFO     | monitoring.concept_drift:detect:136 - Concept drift detected=True
+2026-08-07 18:45:47.080 | INFO     | monitoring.concept_drift:detect:136 - Concept drift detected=True
+2026-08-07 18:45:47.080 | INFO     | monitoring.concept_drift:detect:136 - Concept drift detected=True
+2026-08-07 18:45:47.081 | INFO     | monitoring.concept_drift:detect:136 - Concept drift detected=True
+2026-08-07 18:45:47.104 | INFO     | preprocessing.data_cleaning:remove_duplicates:29 - Removed 1 duplicate records.
+2026-08-07 18:45:47.107 | INFO     | preprocessing.data_cleaning:clip_percentage_columns:148 - Percentage columns validated.
+2026-08-07 18:45:47.108 | INFO     | preprocessing.data_cleaning:fill_missing_numeric:100 - Numeric missing values filled.
+2026-08-07 18:45:47.113 | INFO     | monitoring.data_drift:detect:94 - Drift detected=False
+2026-08-07 18:45:47.116 | INFO     | monitoring.data_drift:detect:94 - Drift detected=True
+2026-08-07 18:45:47.118 | INFO     | monitoring.data_drift:detect:94 - Drift detected=True
+2026-08-07 18:45:47.120 | INFO     | monitoring.data_drift:detect:94 - Drift detected=True
+2026-08-07 18:45:47.121 | SUCCESS  | preprocessing.data_loader:fetch_dataframe:95 - /system-metrics: loaded 2 records.
+2026-08-07 18:45:47.123 | SUCCESS  | preprocessing.data_loader:fetch_dataframe:95 - /system-metrics: loaded 0 records.
+2026-08-07 18:45:47.127 | INFO     | failure_prediction.dataset_builder:load_features:33 - Loading engineered features...
+2026-08-07 18:45:47.128 | SUCCESS  | failure_prediction.dataset_builder:load_features:40 - Loaded 2 feature records.
+2026-08-07 18:45:47.128 | INFO     | failure_prediction.dataset_builder:load_incidents:48 - Loading incident history...
+2026-08-07 18:45:47.129 | SUCCESS  | failure_prediction.dataset_builder:load_incidents:55 - Loaded 1 incidents.
+2026-08-07 18:45:47.136 | SUCCESS  | failure_prediction.dataset_builder:build:114 - Unified dataset created with 2 rows.
+2026-08-07 18:45:47.137 | SUCCESS  | failure_prediction.dataset_builder:save:145 - Dataset saved to /private/var/folders/71/m_cwb65x7wlfvb2vnq3frct00000gn/T/pytest-of-nikhil/pytest-40/test_dataset_export0/dataset.csv
+2026-08-07 18:45:47.138 | SUCCESS  | retraining.dataset_versioning:create_version:93 - Created dataset version e18585a19a6e
+2026-08-07 18:45:47.139 | SUCCESS  | retraining.dataset_versioning:create_version:93 - Created dataset version e18585a19a6e
+2026-08-07 18:45:47.140 | SUCCESS  | retraining.dataset_versioning:create_version:93 - Created dataset version e18585a19a6e
+2026-08-07 18:45:47.143 | SUCCESS  | retraining.dataset_versioning:create_version:93 - Created dataset version e18585a19a6e
+2026-08-07 18:45:47.144 | SUCCESS  | retraining.dataset_versioning:create_version:93 - Created dataset version e18585a19a6e
+2026-08-07 18:45:47.156 | INFO     | anomaly_detection.isolation_forest:train:54 - Training Isolation Forest...
+2026-08-07 18:45:47.294 | SUCCESS  | anomaly_detection.isolation_forest:train:62 - Isolation Forest training completed.
+2026-08-07 18:45:47.294 | INFO     | anomaly_detection.evaluator:evaluate:44 - Evaluating IsolationForestDetector
+2026-08-07 18:45:47.313 | SUCCESS  | anomaly_detection.evaluator:evaluate:105 - Evaluation completed for IsolationForestDetector
+2026-08-07 18:45:47.334 | INFO     | failure_prediction.random_forest:train:58 - Training Random Forest...
+2026-08-07 18:45:47.521 | SUCCESS  | failure_prediction.random_forest:train:69 - Random Forest training completed.
+2026-08-07 18:45:47.521 | INFO     | failure_prediction.evaluator:evaluate:39 - Evaluating RandomForestFailurePredictor
+2026-08-07 18:45:47.575 | SUCCESS  | failure_prediction.evaluator:evaluate:96 - Evaluation completed.
+2026-08-07 18:45:47.662 | INFO     | failure_prediction.feature_selector:fit:38 - Calculating feature importance...
+2026-08-07 18:45:47.835 | SUCCESS  | failure_prediction.feature_selector:fit:58 - Feature importance calculated.
+2026-08-07 18:45:47.836 | INFO     | failure_prediction.feature_selector:fit:38 - Calculating feature importance...
+2026-08-07 18:45:47.965 | SUCCESS  | failure_prediction.feature_selector:fit:58 - Feature importance calculated.
+2026-08-07 18:45:47.970 | ERROR    | serving.health:mlflow_status:42 - MLflow health check failed: Connection failed
+2026-08-07 18:45:47.971 | INFO     | anomaly_detection.isolation_forest:train:54 - Training Isolation Forest...
+2026-08-07 18:45:48.090 | SUCCESS  | anomaly_detection.isolation_forest:train:62 - Isolation Forest training completed.
+2026-08-07 18:45:48.090 | INFO     | anomaly_detection.inference:predict:51 - Running inference using IsolationForestDetector
+2026-08-07 18:45:48.102 | SUCCESS  | anomaly_detection.inference:predict:87 - Inference completed (100 samples).
+2026-08-07 18:45:48.103 | INFO     | anomaly_detection.isolation_forest:train:54 - Training Isolation Forest...
+2026-08-07 18:45:48.219 | SUCCESS  | anomaly_detection.isolation_forest:train:62 - Isolation Forest training completed.
+2026-08-07 18:45:48.219 | INFO     | anomaly_detection.inference:predict:51 - Running inference using IsolationForestDetector
+2026-08-07 18:45:48.229 | SUCCESS  | anomaly_detection.inference:predict:87 - Inference completed (100 samples).
+2026-08-07 18:45:48.230 | INFO     | anomaly_detection.isolation_forest:train:54 - Training Isolation Forest...
+2026-08-07 18:45:48.342 | SUCCESS  | anomaly_detection.isolation_forest:train:62 - Isolation Forest training completed.
+2026-08-07 18:45:48.342 | INFO     | anomaly_detection.inference:predict:51 - Running inference using IsolationForestDetector
+2026-08-07 18:45:48.352 | SUCCESS  | anomaly_detection.inference:predict:87 - Inference completed (100 samples).
+2026-08-07 18:45:48.353 | INFO     | anomaly_detection.isolation_forest:train:54 - Training Isolation Forest...
+2026-08-07 18:45:48.467 | SUCCESS  | anomaly_detection.isolation_forest:train:62 - Isolation Forest training completed.
+2026-08-07 18:45:48.467 | INFO     | anomaly_detection.inference:predict:51 - Running inference using IsolationForestDetector
+2026-08-07 18:45:48.477 | SUCCESS  | anomaly_detection.inference:predict:87 - Inference completed (100 samples).
+2026-08-07 18:45:48.478 | INFO     | serving.inference_service:predict:47 - Inference request received for 'failure_prediction'.
+2026-08-07 18:45:48.484 | INFO     | anomaly_detection.isolation_forest:train:54 - Training Isolation Forest...
+2026-08-07 18:45:48.596 | SUCCESS  | anomaly_detection.isolation_forest:train:62 - Isolation Forest training completed.
+2026-08-07 18:45:48.597 | INFO     | anomaly_detection.isolation_forest:train:54 - Training Isolation Forest...
+2026-08-07 18:45:48.711 | SUCCESS  | anomaly_detection.isolation_forest:train:62 - Isolation Forest training completed.
+2026-08-07 18:45:48.718 | INFO     | anomaly_detection.isolation_forest:train:54 - Training Isolation Forest...
+2026-08-07 18:45:48.841 | SUCCESS  | anomaly_detection.isolation_forest:train:62 - Isolation Forest training completed.
+2026-08-07 18:45:48.848 | INFO     | anomaly_detection.isolation_forest:train:54 - Training Isolation Forest...
+2026-08-07 18:45:48.960 | SUCCESS  | anomaly_detection.isolation_forest:train:62 - Isolation Forest training completed.
+2026-08-07 18:45:48.989 | SUCCESS  | anomaly_detection.isolation_forest:save:120 - Model saved to /private/var/folders/71/m_cwb65x7wlfvb2vnq3frct00000gn/T/pytest-of-nikhil/pytest-40/test_save_load1/iforest.joblib
+2026-08-07 18:45:49.012 | SUCCESS  | anomaly_detection.isolation_forest:load:133 - Model loaded from /private/var/folders/71/m_cwb65x7wlfvb2vnq3frct00000gn/T/pytest-of-nikhil/pytest-40/test_save_load1/iforest.joblib
+2026-08-07 18:45:49.026 | INFO     | failure_prediction.label_generator:generate:33 - Generating labels using 0:30:00 window...
+2026-08-07 18:45:49.029 | SUCCESS  | failure_prediction.label_generator:generate:112 - Generated labels (Positive=2, Negative=2)
+2026-08-07 18:45:49.029 | INFO     | failure_prediction.label_generator:generate:33 - Generating labels using 0:30:00 window...
+2026-08-07 18:45:49.031 | SUCCESS  | failure_prediction.label_generator:generate:112 - Generated labels (Positive=2, Negative=2)
+2026-08-07 18:45:49.032 | INFO     | failure_prediction.label_generator:generate:33 - Generating labels using 0:30:00 window...
+2026-08-07 18:45:49.034 | INFO     | monitoring.latency_monitor:evaluate:86 - Latency OK=True
+2026-08-07 18:45:49.034 | INFO     | monitoring.latency_monitor:evaluate:86 - Latency OK=True
+2026-08-07 18:45:49.035 | INFO     | monitoring.latency_monitor:evaluate:86 - Latency OK=False
+2026-08-07 18:45:49.036 | INFO     | monitoring.latency_monitor:evaluate:86 - Latency OK=True
+2026-08-07 18:45:49.037 | INFO     | monitoring.latency_monitor:evaluate:86 - Latency OK=False
+2026-08-07 18:45:49.050 | INFO     | serving.model_loader:_load_from_registry:182 - Loading model from 'models:/RandomForest/Production'
+2026-08-07 18:45:49.051 | SUCCESS  | serving.model_loader:load:94 - Loaded model 'failure_prediction' (Production)
+2026-08-07 18:45:49.053 | SUCCESS  | serving.model_loader:load:94 - Loaded model 'failure_prediction' (Production)
+2026-08-07 18:45:49.058 | INFO     | serving.model_loader:_load_from_registry:182 - Loading model from 'models:/RandomForest/2'
+2026-08-07 18:45:49.059 | INFO     | serving.model_loader:_load_from_registry:182 - Loading model from 'models:/RandomForest/Production'
+2026-08-07 18:45:49.070 | INFO     | anomaly_detection.model_selector:select_best:36 - Selecting best model using 'f1_score'.
+2026-08-07 18:45:49.070 | SUCCESS  | anomaly_detection.model_selector:select_best:68 - Selected model: AutoencoderDetector
+2026-08-07 18:45:49.070 | INFO     | anomaly_detection.model_selector:select_best:36 - Selecting best model using 'f1_score'.
+2026-08-07 18:45:49.070 | WARNING  | anomaly_detection.model_selector:select_best:57 - Metric 'f1_score' not available. Falling back to lowest inference latency.
+2026-08-07 18:45:49.070 | SUCCESS  | anomaly_detection.model_selector:select_best:68 - Selected model: IsolationForestDetector
+2026-08-07 18:45:49.078 | INFO     | monitoring.monitoring_manager:monitor:49 - Monitoring 'failure_prediction'.
+2026-08-07 18:45:49.080 | INFO     | monitoring.trigger:run_monitoring:26 - Starting monitoring workflow.
+2026-08-07 18:45:49.086 | SUCCESS  | preprocessing.normalization:fit_transform:54 - standard normalization applied to 2 columns.
+2026-08-07 18:45:49.088 | SUCCESS  | preprocessing.normalization:fit_transform:54 - minmax normalization applied to 1 columns.
+2026-08-07 18:45:49.090 | SUCCESS  | preprocessing.normalization:fit_transform:54 - standard normalization applied to 1 columns.
+2026-08-07 18:45:49.091 | WARNING  | preprocessing.normalization:fit_transform:47 - No valid columns found for normalization.
+2026-08-07 18:45:49.096 | INFO     | monitoring.performance_monitor:evaluate:113 - Performance OK=True
+2026-08-07 18:45:49.100 | INFO     | monitoring.performance_monitor:evaluate:113 - Performance OK=False
+2026-08-07 18:45:49.103 | INFO     | monitoring.performance_monitor:evaluate:113 - Performance OK=True
+2026-08-07 18:45:49.107 | INFO     | monitoring.performance_monitor:evaluate:113 - Performance OK=False
+2026-08-07 18:45:49.110 | INFO     | monitoring.performance_monitor:evaluate:113 - Performance OK=True
+2026-08-07 18:45:49.112 | INFO     | retraining.pipeline:run:41 - Starting retraining pipeline for 'failure_prediction'.
+2026-08-07 18:45:49.112 | SUCCESS  | retraining.pipeline:run:97 - Retraining pipeline completed for 'failure_prediction'.
+2026-08-07 18:45:49.116 | SUCCESS  | retraining.promotion_manager:should_promote:81 - Candidate approved for promotion.
+2026-08-07 18:45:49.118 | WARNING  | retraining.promotion_manager:rollback_decision:97 - Rollback to previous production model.
+2026-08-07 18:45:49.119 | SUCCESS  | retraining.promotion_manager:should_promote:81 - Candidate approved for promotion.
+2026-08-07 18:45:49.119 | INFO     | failure_prediction.random_forest:train:58 - Training Random Forest...
+2026-08-07 18:45:49.300 | SUCCESS  | failure_prediction.random_forest:train:69 - Random Forest training completed.
+2026-08-07 18:45:49.301 | INFO     | failure_prediction.random_forest:train:58 - Training Random Forest...
+2026-08-07 18:45:49.481 | SUCCESS  | failure_prediction.random_forest:train:69 - Random Forest training completed.
+2026-08-07 18:45:49.507 | INFO     | failure_prediction.random_forest:train:58 - Training Random Forest...
+2026-08-07 18:45:49.685 | SUCCESS  | failure_prediction.random_forest:train:69 - Random Forest training completed.
+2026-08-07 18:45:49.712 | INFO     | failure_prediction.random_forest:train:58 - Training Random Forest...
+2026-08-07 18:45:49.886 | SUCCESS  | failure_prediction.random_forest:train:69 - Random Forest training completed.
+2026-08-07 18:45:49.923 | SUCCESS  | failure_prediction.random_forest:save:132 - Model saved to /private/var/folders/71/m_cwb65x7wlfvb2vnq3frct00000gn/T/pytest-of-nikhil/pytest-40/test_save_load2/rf.joblib
+2026-08-07 18:45:49.948 | SUCCESS  | failure_prediction.random_forest:load:145 - Model loaded from /private/var/folders/71/m_cwb65x7wlfvb2vnq3frct00000gn/T/pytest-of-nikhil/pytest-40/test_save_load2/rf.joblib
+2026-08-07 18:45:49.981 | INFO     | root_cause_analysis.trainer:train:39 - Training Root Cause Analysis model...
+2026-08-07 18:45:49.981 | SUCCESS  | root_cause_analysis.trainer:train:55 - Root Cause Analysis training completed.
+2026-08-07 18:45:49.987 | SUCCESS  | monitoring.report_generator:generate:67 - Monitoring report generated for 'failure_prediction'.
+2026-08-07 18:45:49.987 | SUCCESS  | monitoring.report_generator:generate:67 - Monitoring report generated for 'failure_prediction'.
+2026-08-07 18:45:49.988 | SUCCESS  | monitoring.report_generator:save:105 - Saved report to /Users/nikhil/Code/SentinelAI/ai-engine/monitoring_reports/failure_prediction_20260807_131549.json
+2026-08-07 18:45:50.094 | INFO     | monitoring.resource_monitor:evaluate:67 - Resources OK=False
+2026-08-07 18:45:50.109 | SUCCESS  | retraining.evaluator:evaluate:88 - Evaluation completed for 'failure_prediction'.
+2026-08-07 18:45:50.114 | SUCCESS  | retraining.evaluator:evaluate:88 - Evaluation completed for 'failure_prediction'.
+2026-08-07 18:45:50.116 | INFO     | retraining.retraining_manager:retrain:65 - Starting retraining for 'failure_prediction'.
+2026-08-07 18:45:50.117 | SUCCESS  | retraining.retraining_manager:retrain:142 - Retraining completed for 'failure_prediction'.
+2026-08-07 18:45:50.119 | INFO     | retraining.retraining_manager:retrain:65 - Starting retraining for 'failure_prediction'.
+2026-08-07 18:45:50.120 | SUCCESS  | retraining.retraining_manager:retrain:142 - Retraining completed for 'failure_prediction'.
+2026-08-07 18:45:50.121 | INFO     | retraining.retraining_manager:retrain:65 - Starting retraining for 'failure_prediction'.
+2026-08-07 18:45:50.122 | SUCCESS  | retraining.retraining_manager:retrain:142 - Retraining completed for 'failure_prediction'.
+2026-08-07 18:45:50.123 | INFO     | retraining.retraining_manager:retrain:65 - Starting retraining for 'failure_prediction'.
+2026-08-07 18:45:50.123 | SUCCESS  | retraining.retraining_manager:retrain:142 - Retraining completed for 'failure_prediction'.
+2026-08-07 18:45:50.137 | INFO     | retraining.trigger:trigger_retraining:26 - Retraining requested for failure_prediction
+2026-08-07 18:45:50.138 | INFO     | retraining.trigger:trigger_full_pipeline:43 - Starting full retraining pipeline.
+2026-08-07 18:45:50.138 | SUCCESS  | retraining.trigger:trigger_full_pipeline:56 - Full retraining pipeline completed.
