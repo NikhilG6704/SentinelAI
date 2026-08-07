@@ -1,0 +1,55 @@
+{
+    "model": "failure_prediction",
+    "generated_at": "2026-08-07T10:28:21.997184+00:00",
+    "data_drift": {
+        "psi": 0.1,
+        "js_distance": 0.1,
+        "ks_statistic": 0.1,
+        "ks_pvalue": 0.5,
+        "psi_drift": false,
+        "js_drift": false,
+        "ks_drift": false
+    },
+    "concept_drift": {
+        "prediction_shift": 0.0,
+        "confidence_shift": 0.0,
+        "error_rate_change": 0.0,
+        "prediction_drift": false,
+        "confidence_drift": false,
+        "error_drift": false
+    },
+    "performance": {
+        "precision": 1,
+        "recall": 1,
+        "f1_score": 1,
+        "roc_auc": 1,
+        "false_positive_rate": 0,
+        "false_negative_rate": 0,
+        "performance_ok": true
+    },
+    "latency": {
+        "average_ms": 10,
+        "median_ms": 10,
+        "p95_ms": 10,
+        "p99_ms": 10,
+        "maximum_ms": 10,
+        "latency_ok": true
+    },
+    "resources": {
+        "cpu_percent": 10,
+        "memory_percent": 10,
+        "process_memory_mb": 100,
+        "model_load_time_ms": 5,
+        "resources_ok": true
+    },
+    "alerts": [
+        {
+            "source": "Performance",
+            "severity": "INFO",
+            "message": "OK",
+            "timestamp": "now",
+            "metadata": {}
+        }
+    ],
+    "recommended_action": "No action required."
+}

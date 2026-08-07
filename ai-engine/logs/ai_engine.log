@@ -3047,3 +3047,47 @@
 2026-08-07 15:43:52.086 | INFO     | retraining.trigger:trigger_retraining:26 - Retraining requested for failure_prediction
 2026-08-07 15:43:52.087 | INFO     | retraining.trigger:trigger_full_pipeline:43 - Starting full retraining pipeline.
 2026-08-07 15:43:52.087 | SUCCESS  | retraining.trigger:trigger_full_pipeline:56 - Full retraining pipeline completed.
+2026-08-07 15:51:25.390 | INFO     | monitoring.data_drift:detect:88 - Drift detected=False
+2026-08-07 15:51:25.393 | INFO     | monitoring.data_drift:detect:88 - Drift detected=True
+2026-08-07 15:51:25.395 | INFO     | monitoring.data_drift:detect:88 - Drift detected=True
+2026-08-07 15:51:25.397 | INFO     | monitoring.data_drift:detect:88 - Drift detected=True
+2026-08-07 15:52:45.641 | INFO     | monitoring.data_drift:detect:94 - Drift detected=False
+2026-08-07 15:52:45.646 | INFO     | monitoring.data_drift:detect:94 - Drift detected=True
+2026-08-07 15:52:45.648 | INFO     | monitoring.data_drift:detect:94 - Drift detected=True
+2026-08-07 15:52:45.649 | INFO     | monitoring.data_drift:detect:94 - Drift detected=True
+2026-08-07 15:53:44.577 | INFO     | monitoring.concept_drift:detect:136 - Concept drift detected=False
+2026-08-07 15:53:44.578 | INFO     | monitoring.concept_drift:detect:136 - Concept drift detected=True
+2026-08-07 15:53:44.578 | INFO     | monitoring.concept_drift:detect:136 - Concept drift detected=True
+2026-08-07 15:53:44.578 | INFO     | monitoring.concept_drift:detect:136 - Concept drift detected=True
+2026-08-07 15:53:44.579 | INFO     | monitoring.concept_drift:detect:136 - Concept drift detected=True
+2026-08-07 15:53:44.579 | INFO     | monitoring.concept_drift:detect:136 - Concept drift detected=True
+2026-08-07 15:54:43.593 | INFO     | monitoring.concept_drift:detect:136 - Concept drift detected=False
+2026-08-07 15:54:43.594 | INFO     | monitoring.concept_drift:detect:136 - Concept drift detected=True
+2026-08-07 15:54:43.594 | INFO     | monitoring.concept_drift:detect:136 - Concept drift detected=True
+2026-08-07 15:54:43.594 | INFO     | monitoring.concept_drift:detect:136 - Concept drift detected=True
+2026-08-07 15:54:43.595 | INFO     | monitoring.concept_drift:detect:136 - Concept drift detected=True
+2026-08-07 15:54:43.595 | INFO     | monitoring.concept_drift:detect:136 - Concept drift detected=True
+2026-08-07 15:56:47.992 | INFO     | monitoring.performance_monitor:evaluate:113 - Performance OK=True
+2026-08-07 15:56:47.996 | INFO     | monitoring.performance_monitor:evaluate:113 - Performance OK=False
+2026-08-07 15:56:47.999 | INFO     | monitoring.performance_monitor:evaluate:113 - Performance OK=True
+2026-08-07 15:56:48.002 | INFO     | monitoring.performance_monitor:evaluate:113 - Performance OK=False
+2026-08-07 15:56:48.006 | INFO     | monitoring.performance_monitor:evaluate:113 - Performance OK=True
+2026-08-07 15:57:16.764 | INFO     | monitoring.latency_monitor:evaluate:86 - Latency OK=True
+2026-08-07 15:57:16.766 | INFO     | monitoring.latency_monitor:evaluate:86 - Latency OK=True
+2026-08-07 15:57:16.766 | INFO     | monitoring.latency_monitor:evaluate:86 - Latency OK=False
+2026-08-07 15:57:16.767 | INFO     | monitoring.latency_monitor:evaluate:86 - Latency OK=True
+2026-08-07 15:57:16.767 | INFO     | monitoring.latency_monitor:evaluate:86 - Latency OK=False
+2026-08-07 15:57:31.972 | INFO     | monitoring.resource_monitor:evaluate:67 - Resources OK=False
+2026-08-07 15:58:03.829 | WARNING  | monitoring.alert_manager:create_alert:67 - [AlertSeverity.WARNING] Performance: Performance dropped.
+2026-08-07 15:58:03.829 | WARNING  | monitoring.alert_manager:create_alert:67 - [AlertSeverity.WARNING] Latency: High latency.
+2026-08-07 15:58:03.830 | WARNING  | monitoring.alert_manager:create_alert:67 - [AlertSeverity.CRITICAL] Resources: CPU high.
+2026-08-07 15:58:03.830 | WARNING  | monitoring.alert_manager:create_alert:67 - [AlertSeverity.WARNING] Data Drift: Feature distribution drift detected.
+2026-08-07 15:58:03.830 | WARNING  | monitoring.alert_manager:create_alert:67 - [AlertSeverity.WARNING] Concept Drift: Prediction behaviour drift detected.
+2026-08-07 15:58:03.830 | WARNING  | monitoring.alert_manager:create_alert:67 - [AlertSeverity.CRITICAL] Performance: Model performance degraded.
+2026-08-07 15:58:03.830 | WARNING  | monitoring.alert_manager:create_alert:67 - [AlertSeverity.WARNING] Latency: Inference latency threshold exceeded.
+2026-08-07 15:58:03.830 | WARNING  | monitoring.alert_manager:create_alert:67 - [AlertSeverity.CRITICAL] Resources: System resource threshold exceeded.
+2026-08-07 15:58:21.996 | SUCCESS  | monitoring.report_generator:generate:67 - Monitoring report generated for 'failure_prediction'.
+2026-08-07 15:58:21.997 | SUCCESS  | monitoring.report_generator:generate:67 - Monitoring report generated for 'failure_prediction'.
+2026-08-07 15:58:21.997 | SUCCESS  | monitoring.report_generator:save:105 - Saved report to /Users/nikhil/Code/SentinelAI/ai-engine/monitoring_reports/failure_prediction_20260807_102821.json
+2026-08-07 15:59:30.391 | INFO     | monitoring.trigger:run_monitoring:26 - Starting monitoring workflow.
+2026-08-07 15:59:39.982 | INFO     | monitoring.monitoring_manager:monitor:49 - Monitoring 'failure_prediction'.
