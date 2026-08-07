@@ -1,125 +1,66 @@
-from __future__ import annotations
+from unittest.mock import MagicMock, patch
 
-from pathlib import Path
-
-import pandas as pd
-import pytest
-
-from preprocessing.pipeline import PreprocessingPipeline
+from retraining.pipeline import RetrainingPipeline
 
 
-@pytest.fixture
-def sample_datasets():
-    """Minimal datasets required by the pipeline."""
+@patch("retraining.pipeline.promotion_manager")
+@patch("retraining.pipeline.model_comparison")
+@patch("retraining.pipeline.retraining_evaluator")
+@patch("retraining.pipeline.retraining_manager")
+@patch("retraining.pipeline.dataset_version_manager")
+def test_pipeline(
+    mock_version,
+    mock_manager,
+    mock_evaluator,
+    mock_comparison,
+    mock_promotion,
+):
+    version = MagicMock()
+    version.version = "v1"
 
-    return {
-        "assets": pd.DataFrame(
-            {
-                "id": [1],
-                "hostname": ["server-01"],
-            }
-        ),
-        "agents": pd.DataFrame(
-            {
-                "id": [1],
-                "infrastructure_asset_id": [1],
-                "last_heartbeat": pd.to_datetime(
-                    ["2026-08-01T10:00:00Z"]
-                ),
-            }
-        ),
-        "metrics": pd.DataFrame(
-            {
-                "monitoring_agent_id": [1],
-                "collection_timestamp": pd.to_datetime(
-                    ["2026-08-01T10:00:00Z"]
-                ),
-                "cpu_usage": [50],
-                "memory_usage": [60],
-                "disk_usage": [70],
-                "network_in": [100],
-                "network_out": [150],
-            }
-        ),
-        "alerts": pd.DataFrame(
-            {
-                "infrastructure_asset_id": [1],
-            }
-        ),
-        "incidents": pd.DataFrame(
-            {
-                "infrastructure_asset_id": [1],
-                "detected_at": pd.to_datetime(
-                    ["2026-08-01T10:00:00Z"]
-                ),
-            }
-        ),
-        "logs": pd.DataFrame(
-            {
-                "infrastructure_asset_id": [1],
-                "log_level": ["ERROR"],
-            }
-        ),
-        "workflows": pd.DataFrame(
-            {
-                "started_at": pd.to_datetime(
-                    ["2026-08-01T10:00:00Z"]
-                ),
-                "completed_at": pd.to_datetime(
-                    ["2026-08-01T10:05:00Z"]
-                ),
-            }
-        ),
-        "audit_logs": pd.DataFrame(),
+    mock_version.create_version.return_value = version
+
+    mock_manager.retrain.return_value = {
+        "training_time": 10.0
     }
 
+    mock_evaluator.evaluate.return_value = {
+        "precision": 0.95,
+        "recall": 0.94,
+        "f1_score": 0.95,
+        "roc_auc": 0.98,
+        "inference_latency": 0.01,
+    }
 
-def test_clean_data(sample_datasets):
-    pipeline = PreprocessingPipeline()
+    comparison = MagicMock()
+    comparison.improved = True
 
-    cleaned = pipeline.clean_data(sample_datasets)
+    mock_comparison.compare.return_value = comparison
 
-    assert isinstance(cleaned, dict)
-    assert "metrics" in cleaned
+    promotion = MagicMock()
+    promotion.promote = True
 
+    mock_promotion.should_promote.return_value = promotion
 
-def test_feature_engineering(sample_datasets):
-    pipeline = PreprocessingPipeline()
+    pipeline = RetrainingPipeline()
 
-    features = pipeline.engineer_features(sample_datasets)
-
-    assert "metrics" in features
-    assert "cpu_moving_average" in features["metrics"].columns
-
-
-def test_normalization(sample_datasets):
-    pipeline = PreprocessingPipeline()
-
-    engineered = pipeline.engineer_features(sample_datasets)
-
-    sample_datasets.update(engineered)
-
-    normalized = pipeline.normalize(sample_datasets)
-
-    assert "metrics" in normalized
-
-
-def test_export(tmp_path: Path):
-    pipeline = PreprocessingPipeline()
-
-    df = pd.DataFrame(
-        {
-            "cpu_usage": [10, 20],
-        }
+    result = pipeline.run(
+        model_name="failure_prediction",
+        trainer=MagicMock(),
+        model=MagicMock(),
+        dataset=MagicMock(),
+        X_train=[],
+        y_train=[],
+        X_test=[],
+        y_test=[],
+        current_metrics={},
     )
 
-    pipeline.export_dataset(
-        df=df,
-        output_dir=tmp_path,
-        filename="metrics",
-    )
+    assert result["dataset_version"] == "v1"
+    assert result["promotion"] == promotion
 
-    csv_exists = (tmp_path / "metrics.csv").exists()
-    parquet_exists = (tmp_path / "metrics.parquet").exists()
 
-    assert csv_exists or parquet_exists
+def test_pipeline_creation():
+    pipeline = RetrainingPipeline()
+
+    assert pipeline is not None

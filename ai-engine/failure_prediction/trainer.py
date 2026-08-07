@@ -6,12 +6,15 @@ from typing import Any
 
 import pandas as pd
 
+from mlops.artifact_manager import artifact_manager
+from mlops.experiment_tracker import ExperimentTracker
+from mlops.model_registry import model_registry
 from utils.logger import logger
 
 
 class FailurePredictionTrainer:
     """
-    Orchestrates supervised model training.
+    Orchestrates supervised model training with MLflow tracking.
     """
 
     def __init__(
@@ -22,58 +25,111 @@ class FailurePredictionTrainer:
 
         self.predictor = predictor
         self.model_dir = Path(model_dir)
+        self.model_dir.mkdir(parents=True, exist_ok=True)
 
     def train(
         self,
         X: pd.DataFrame,
         y: pd.Series,
+        dataset_version: str = "v1",
+        feature_version: str = "v1",
+        hyperparameters: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
-        """
-        Train and persist the prediction model.
-        """
 
-        logger.info(
-            f"Training {self.predictor.__class__.__name__}"
+        model_name = self.predictor.__class__.__name__
+
+        logger.info(f"Training {model_name}")
+
+        tracker = ExperimentTracker(
+            component="failure_prediction",
+            run_name=model_name,
+            dataset_version=dataset_version,
+            feature_version=feature_version,
+            hyperparameters=hyperparameters or {},
         )
 
-        start = time.perf_counter()
+        with tracker:
 
-        self.predictor.train(
-            X,
-            y,
-        )
+            start = time.perf_counter()
 
-        training_time = time.perf_counter() - start
+            self.predictor.train(X, y)
 
-        extension = (
-            ".joblib"
-        )
+            training_time = time.perf_counter() - start
 
-        model_path = (
-            self.model_dir
-            / f"{self.predictor.__class__.__name__}{extension}"
-        )
+            model_path = (
+                self.model_dir
+                / f"{model_name}.joblib"
+            )
 
-        self.predictor.save(model_path)
+            self.predictor.save(model_path)
 
-        logger.success(
-            f"Training completed in "
-            f"{training_time:.2f} seconds."
-        )
+            tracker.log_metric(
+                "training_time_seconds",
+                training_time,
+            )
 
-        return {
-            "model_name": self.predictor.__class__.__name__,
-            "training_time_seconds": training_time,
-            "model_path": str(model_path),
-        }
+            tracker.log_param(
+                "training_samples",
+                len(X),
+            )
+
+            tracker.log_param(
+                "feature_count",
+                X.shape[1],
+            )
+
+            tracker.log_param(
+                "target_classes",
+                y.nunique(),
+            )
+
+            artifact_manager.log_model_file(model_path)
+
+            # Log native ML model
+            if model_name == "RandomForestFailurePredictor":
+                tracker.log_sklearn_model(
+                    self.predictor.model,
+                    artifact_path="model",
+                )
+
+            elif model_name == "XGBoostFailurePredictor":
+                tracker.log_xgboost_model(
+                    self.predictor.model,
+                    artifact_path="model",
+            )
+
+            run_id = tracker.run_id
+
+            if run_id is not None:
+
+                registry_key = {
+                    "RandomForestPredictor": "random_forest",
+                    "XGBoostPredictor": "xgboost",
+                }.get(model_name)
+
+                if registry_key is not None:
+
+                    model_registry.register_model(
+                        model_uri=f"runs:/{run_id}/model",
+                        model_key=registry_key,
+                    )
+
+            logger.success(
+                f"Training completed in "
+                f"{training_time:.2f} seconds."
+            )
+
+            return {
+                "model_name": model_name,
+                "training_time_seconds": training_time,
+                "model_path": str(model_path),
+                "run_id": run_id,
+            }
 
     def load(
         self,
         model_path: str | Path,
     ) -> None:
-        """
-        Load an existing trained model.
-        """
 
         self.predictor.load(model_path)
 

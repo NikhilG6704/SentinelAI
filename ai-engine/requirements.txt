@@ -37,3 +37,8 @@ pytest-asyncio>=1.1.0
 # Type Checking
 typing-extensions>=4.14.0
 networkx>=3.3
+
+# MLOps
+mlflow>=2.16.2
+xgboost>=2.1.1
+matplotlib>=3.9.2

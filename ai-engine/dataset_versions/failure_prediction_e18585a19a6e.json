@@ -1,0 +1,13 @@
+{
+    "version": "e18585a19a6e",
+    "dataset": "failure_prediction",
+    "created_at": "2026-08-07T10:13:49.285486+00:00",
+    "rows": 3,
+    "columns": 3,
+    "schema": {
+        "cpu": "int64",
+        "memory": "int64",
+        "failure": "int64"
+    },
+    "checksum": "e18585a19a6e5a947e1bc5cea6b067d61665826a1c3f03ef5cf43fc94c2c0a75"
+}
