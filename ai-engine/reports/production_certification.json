@@ -1,0 +1,76 @@
+{
+    "certified": false,
+    "generated_at": "2026-08-07T16:06:07.466969+00:00",
+    "integration": {
+        "success": false,
+        "checks": [
+            {
+                "name": "Deployment",
+                "passed": true,
+                "message": "Deployment validation completed."
+            },
+            {
+                "name": "MLflow",
+                "passed": false,
+                "message": "'MLflowManager' object has no attribute 'initialize'"
+            },
+            {
+                "name": "Model Registry",
+                "passed": false,
+                "message": "'ModelRegistry' object has no attribute 'list_models'"
+            },
+            {
+                "name": "Model Serving",
+                "passed": true,
+                "message": "Model loader initialized."
+            },
+            {
+                "name": "Monitoring",
+                "passed": true,
+                "message": "Monitoring initialized."
+            },
+            {
+                "name": "Retraining",
+                "passed": true,
+                "message": "Retraining initialized."
+            }
+        ]
+    },
+    "performance": {
+        "startup_time": 0.007918292001704685,
+        "average_load_time": 0.0006949748029001057,
+        "p95_load_time": 0.0008377920021302998,
+        "p99_load_time": 0.0008377920021302998,
+        "cpu_percent": 7.9,
+        "memory_percent": 81.4
+    },
+    "benchmark": {
+        "iterations": 100,
+        "startup_average": 0.01349996871111216,
+        "startup_min": 0.005982082991977222,
+        "startup_max": 0.022703916998580098,
+        "startup_std": 0.0027027271071135713,
+        "load_average": 0.0010661534964456223,
+        "load_min": 0.0005157834006240591,
+        "load_max": 0.0032188163953833283,
+        "load_std": 0.00033632326946127764,
+        "average_cpu": 16.315,
+        "average_memory": 80.695
+    },
+    "load_test": {
+        "total_requests": 250,
+        "successful_requests": 0,
+        "failed_requests": 250,
+        "throughput": 1833.35533353364,
+        "average_latency": 0.005204675983986817,
+        "max_latency": 0.013184499999624677,
+        "error_rate": 1.0
+    },
+    "regression": {
+        "registry_consistent": false,
+        "comparison_successful": false,
+        "production_version": null,
+        "candidate_version": null,
+        "passed": false
+    }
+}
