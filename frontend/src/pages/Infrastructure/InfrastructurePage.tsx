@@ -2,9 +2,10 @@ import { useMemo, useState } from "react";
 
 import { useInfrastructureAssets } from "../../hooks/useInfrastructure";
 
+import AgentStatusSummary from "./AgentStatusSummary";
+import InfrastructureAssetDetails from "./InfrastructureAssetDetails";
 import InfrastructureFilters from "./InfrastructureFilters";
 import InfrastructureTable from "./InfrastructureTable";
-import AgentStatusSummary from "./AgentStatusSummary";
 
 function InfrastructurePage() {
   const {
@@ -17,6 +18,7 @@ function InfrastructurePage() {
 
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("all");
+  const [selectedAssetId, setSelectedAssetId] = useState<number | null>(null);
 
   const filteredAssets = useMemo(() => {
     const normalizedSearch = search.trim().toLowerCase();
@@ -25,8 +27,8 @@ function InfrastructurePage() {
       const matchesSearch =
         normalizedSearch.length === 0 ||
         String(asset.id).includes(normalizedSearch) ||
-        asset.hostname?.toLowerCase().includes(normalizedSearch) ||
-        asset.ip_address?.toLowerCase().includes(normalizedSearch);
+        asset.hostname.toLowerCase().includes(normalizedSearch) ||
+        asset.ip_address.toLowerCase().includes(normalizedSearch);
 
       const matchesStatus = status === "all" || asset.status === status;
 
@@ -83,10 +85,18 @@ function InfrastructurePage() {
               onClear={clearFilters}
             />
 
-            <InfrastructureTable assets={filteredAssets} />
+            <InfrastructureTable
+              assets={filteredAssets}
+              onAssetSelect={setSelectedAssetId}
+            />
           </>
         )}
       </div>
+
+      <InfrastructureAssetDetails
+        assetId={selectedAssetId}
+        onClose={() => setSelectedAssetId(null)}
+      />
     </div>
   );
 }

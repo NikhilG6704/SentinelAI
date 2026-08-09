@@ -1,10 +1,11 @@
 import { FiMonitor, FiServer } from "react-icons/fi";
-
+import { useState } from "react";
 import Card from "../../components/ui/Card";
 import StatusDot from "../../components/ui/StatusDot";
 import type { InfrastructureAsset } from "../../api/infrastructure";
 interface InfrastructureTableProps {
   assets: InfrastructureAsset[];
+  onAssetSelect: (assetId: number) => void;
 }
 function getStatus(status: InfrastructureAsset["status"]) {
   switch (status) {
@@ -21,7 +22,10 @@ function getStatus(status: InfrastructureAsset["status"]) {
   }
 }
 
-function InfrastructureTable({ assets }: InfrastructureTableProps) {
+function InfrastructureTable({
+  assets,
+  onAssetSelect,
+}: InfrastructureTableProps) {
   return (
     <Card>
       <div className="flex items-center justify-between">
@@ -84,9 +88,13 @@ function InfrastructureTable({ assets }: InfrastructureTableProps) {
                       </div>
 
                       <div>
-                        <p className="text-xs font-medium text-zinc-200">
+                        <button
+                          type="button"
+                          onClick={() => onAssetSelect(asset.id)}
+                          className="text-left text-xs font-medium text-zinc-200 transition-colors hover:text-blue-400"
+                        >
                           {asset.hostname}
-                        </p>
+                        </button>
 
                         <p className="mt-1 text-[11px] text-zinc-600">
                           ID #{asset.id}
