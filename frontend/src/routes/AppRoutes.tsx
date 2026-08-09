@@ -6,6 +6,7 @@ import DashboardPage from "../components/dashboard/DashboardPage";
 import InfrastructurePage from "../pages/Infrastructure/InfrastructurePage";
 import AlertsPage from "../pages/Alerts/AlertsPage";
 import IncidentsPage from "../pages/Incidents/IncidentsPage";
+import RecoveryPage from "../pages/Recovery/RecoveryPage";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -15,6 +16,7 @@ export default function AppRoutes() {
         <Route path="/metrics" element={<MetricsPage />} />
         <Route path="/alerts" element={<AlertsPage />} />
         <Route path="/incidents" element={<IncidentsPage />} />
+        <Route path="/recovery" element={<RecoveryPage />} />
       </Route>
 
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
