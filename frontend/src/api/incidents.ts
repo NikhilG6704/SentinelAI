@@ -9,7 +9,7 @@ export interface Incident {
   id: number;
   infrastructure_asset_id: number;
   monitoring_agent_id: number | null;
-  alert_id: number | null;
+  alert_id?: number | null;
   incident_title: string;
   incident_description: string;
   severity: IncidentSeverity;

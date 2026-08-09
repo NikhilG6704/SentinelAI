@@ -13,7 +13,6 @@ from app.models.incident import (
 class IncidentCreate(BaseModel):
     infrastructure_asset_id: int
     monitoring_agent_id: int | None = None
-    alert_id: int | None = None
 
     incident_title: str = Field(max_length=255)
     incident_description: str
@@ -40,7 +39,6 @@ class IncidentResponse(BaseModel):
 
     infrastructure_asset_id: int
     monitoring_agent_id: int | None
-    alert_id: int | None
 
     incident_title: str
     incident_description: str
