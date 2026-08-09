@@ -1,5 +1,4 @@
 import { FiMonitor, FiServer } from "react-icons/fi";
-import { useState } from "react";
 import Card from "../../components/ui/Card";
 import StatusDot from "../../components/ui/StatusDot";
 import type { InfrastructureAsset } from "../../api/infrastructure";

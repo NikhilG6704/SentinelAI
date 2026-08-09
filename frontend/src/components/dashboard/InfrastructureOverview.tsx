@@ -12,7 +12,15 @@ function InfrastructureOverview() {
     isError,
   } = useDashboardOverview();
 
-  const dashboard = dashboardResponse?.data;
+  const dashboard = dashboardResponse?.data as
+    | {
+        total_assets?: number;
+        online_agents?: number;
+        offline_agents?: number;
+        warning_assets?: number;
+        critical_assets?: number;
+      }
+    | undefined;
 
   const totalAssets = dashboard?.total_assets ?? 0;
   const onlineAgents = dashboard?.online_agents ?? 0;

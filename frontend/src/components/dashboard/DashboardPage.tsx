@@ -38,11 +38,7 @@ function calculateHealthScore(data: DashboardOverviewData) {
   return Math.round(score);
 }
 function DashboardPage() {
-  const {
-    data: dashboardResponse,
-    isLoading,
-    isError,
-  } = useDashboardOverview();
+  const { data: dashboardResponse, isLoading } = useDashboardOverview();
 
   const dashboard = dashboardResponse?.data as
     | DashboardOverviewData

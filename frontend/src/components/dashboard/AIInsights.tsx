@@ -1,6 +1,5 @@
 import {
   FiArrowRight,
-  FiCpu,
   FiGitBranch,
   FiShield,
   FiTrendingUp,
