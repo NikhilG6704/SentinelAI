@@ -2,6 +2,7 @@ import { useMetrics } from "../../hooks/useMetrics";
 
 import MetricsSummary from "./MetricsSummary";
 import MetricsChart from "./MetricsChart";
+
 function MetricsPage() {
   const { data: metricsResponse, isLoading, isError } = useMetrics();
 

@@ -7,8 +7,8 @@ import {
   YAxis,
 } from "recharts";
 
-import ChartCard from "../../components/charts/ChartCard";
 import type { SystemMetric } from "../../api/metrics";
+import ChartCard from "../../components/charts/ChartCard";
 
 interface MetricsChartProps {
   metrics: SystemMetric[];
@@ -35,8 +35,7 @@ function MetricsChart({
         hour: "2-digit",
         minute: "2-digit",
       }),
-      networkIn: item.network_in,
-      networkOut: item.network_out,
+
       value:
         metric === "cpu"
           ? item.cpu_usage
@@ -44,8 +43,14 @@ function MetricsChart({
             ? item.memory_usage
             : metric === "disk"
               ? item.disk_usage
-              : item.network_in,
+              : undefined,
+
+      networkIn: metric === "network" ? item.network_in : undefined,
+
+      networkOut: metric === "network" ? item.network_out : undefined,
     }));
+
+  const isNetwork = metric === "network";
 
   return (
     <ChartCard
@@ -58,55 +63,68 @@ function MetricsChart({
           <p className="text-sm text-zinc-500">No metric samples available.</p>
         </div>
       ) : (
-        <div className="h-56">
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={data}>
-              <XAxis
-                dataKey="time"
-                tick={{ fontSize: 10 }}
-                tickLine={false}
-                axisLine={false}
-              />
+        <>
+          <div className="mb-3 flex items-center gap-4 text-[11px] text-zinc-500">
+            {isNetwork && (
+              <>
+                <span>Inbound</span>
+                <span>Outbound</span>
+              </>
+            )}
+          </div>
 
-              <YAxis
-                domain={metric === "network" ? ["auto", "auto"] : [0, 100]}
-                tick={{ fontSize: 10 }}
-                tickLine={false}
-                axisLine={false}
-                width={35}
-              />
-
-              <Tooltip />
-
-              {metric === "network" ? (
-                <>
-                  <Line
-                    type="monotone"
-                    dataKey="networkIn"
-                    name="Network In"
-                    strokeWidth={2}
-                    dot={false}
-                  />
-
-                  <Line
-                    type="monotone"
-                    dataKey="networkOut"
-                    name="Network Out"
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                </>
-              ) : (
-                <Line
-                  type="monotone"
-                  dataKey="value"
-                  strokeWidth={2}
-                  dot={false}
+          <div className="h-56">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={data}>
+                <XAxis
+                  dataKey="time"
+                  tick={{ fontSize: 10 }}
+                  tickLine={false}
+                  axisLine={false}
                 />
-              )}
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
+
+                <YAxis
+                  domain={isNetwork ? ["auto", "auto"] : [0, 100]}
+                  tick={{ fontSize: 10 }}
+                  tickLine={false}
+                  axisLine={false}
+                  width={40}
+                />
+
+                <Tooltip />
+
+                {!isNetwork && (
+                  <Line
+                    type="monotone"
+                    dataKey="value"
+                    strokeWidth={2}
+                    dot={false}
+                  />
+                )}
+
+                {isNetwork && (
+                  <>
+                    <Line
+                      type="monotone"
+                      dataKey="networkIn"
+                      name="Inbound"
+                      strokeWidth={2}
+                      dot={false}
+                    />
+
+                    <Line
+                      type="monotone"
+                      dataKey="networkOut"
+                      name="Outbound"
+                      strokeWidth={2}
+                      dot={false}
+                    />
+                  </>
+                )}
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </>
       )}
     </ChartCard>
   );

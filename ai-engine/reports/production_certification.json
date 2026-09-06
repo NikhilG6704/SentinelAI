@@ -1,6 +1,6 @@
 {
     "certified": false,
-    "generated_at": "2026-08-07T16:06:07.466969+00:00",
+    "generated_at": "2026-08-19T04:25:28.708189+00:00",
     "integration": {
         "success": false,
         "checks": [
@@ -37,33 +37,33 @@
         ]
     },
     "performance": {
-        "startup_time": 0.007918292001704685,
-        "average_load_time": 0.0006949748029001057,
-        "p95_load_time": 0.0008377920021302998,
-        "p99_load_time": 0.0008377920021302998,
-        "cpu_percent": 7.9,
-        "memory_percent": 81.4
+        "startup_time": 0.0032262500026263297,
+        "average_load_time": 0.0005005249986425042,
+        "p95_load_time": 0.0007042500074021518,
+        "p99_load_time": 0.0007042500074021518,
+        "cpu_percent": 21.9,
+        "memory_percent": 78.7
     },
     "benchmark": {
         "iterations": 100,
-        "startup_average": 0.01349996871111216,
-        "startup_min": 0.005982082991977222,
-        "startup_max": 0.022703916998580098,
-        "startup_std": 0.0027027271071135713,
-        "load_average": 0.0010661534964456223,
-        "load_min": 0.0005157834006240591,
-        "load_max": 0.0032188163953833283,
-        "load_std": 0.00033632326946127764,
-        "average_cpu": 16.315,
-        "average_memory": 80.695
+        "startup_average": 0.013240537499659694,
+        "startup_min": 0.00602162501309067,
+        "startup_max": 0.018754874996375293,
+        "startup_std": 0.00231384734932938,
+        "load_average": 0.001072378769866191,
+        "load_min": 0.000682783400407061,
+        "load_max": 0.002129974996205419,
+        "load_std": 0.00020647681318456112,
+        "average_cpu": 20.89,
+        "average_memory": 79.514
     },
     "load_test": {
         "total_requests": 250,
         "successful_requests": 0,
         "failed_requests": 250,
-        "throughput": 1833.35533353364,
-        "average_latency": 0.005204675983986817,
-        "max_latency": 0.013184499999624677,
+        "throughput": 1801.5751214042639,
+        "average_latency": 0.005255190012976527,
+        "max_latency": 0.0161541250126902,
         "error_rate": 1.0
     },
     "regression": {

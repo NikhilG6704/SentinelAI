@@ -7,6 +7,8 @@ import InfrastructurePage from "../pages/Infrastructure/InfrastructurePage";
 import AlertsPage from "../pages/Alerts/AlertsPage";
 import IncidentsPage from "../pages/Incidents/IncidentsPage";
 import RecoveryPage from "../pages/Recovery/RecoveryPage";
+import AIPage from "../pages/AI/AIPage";
+import SelfHealingPage from "../pages/SelfHealing/SelfHealingPage";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -17,6 +19,8 @@ export default function AppRoutes() {
         <Route path="/alerts" element={<AlertsPage />} />
         <Route path="/incidents" element={<IncidentsPage />} />
         <Route path="/recovery" element={<RecoveryPage />} />
+        <Route path="/ai" element={<AIPage />} />
+        <Route path="/self-healing" element={<SelfHealingPage />} />
       </Route>
 
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
