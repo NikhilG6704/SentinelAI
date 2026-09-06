@@ -1,11 +1,13 @@
 import { useMemo, useState } from "react";
+import toast from "react-hot-toast";
 
 import { useInfrastructureAssets } from "../../hooks/useInfrastructure";
+import type { InfrastructureAsset } from "../../api/infrastructure";
 
 import AgentStatusSummary from "./AgentStatusSummary";
 import InfrastructureAssetDetails from "./InfrastructureAssetDetails";
 import InfrastructureFilters from "./InfrastructureFilters";
-import InfrastructureTable from "./InfrastructureTable";
+import ServerMonitorCard from "./ServerMonitorCard";
 
 function InfrastructurePage() {
   const {
@@ -18,7 +20,7 @@ function InfrastructurePage() {
 
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("all");
-  const [selectedAssetId, setSelectedAssetId] = useState<number | null>(null);
+  const [selectedAsset, setSelectedAsset] = useState<InfrastructureAsset | null>(null);
 
   const filteredAssets = useMemo(() => {
     const normalizedSearch = search.trim().toLowerCase();
@@ -41,6 +43,14 @@ function InfrastructurePage() {
     setStatus("all");
   };
 
+  const handleAlert = (hostname: string, message: string) => {
+    toast.error(message, {
+      id: `alert-${hostname}`, // Prevent duplicate toasts
+      duration: 10000,
+      icon: '🚨',
+    });
+  };
+
   return (
     <div className="min-h-full">
       <div className="border-b border-zinc-800/80 px-6 py-5">
@@ -49,12 +59,11 @@ function InfrastructurePage() {
         </p>
 
         <h1 className="mt-1 text-2xl font-semibold tracking-tight text-zinc-100">
-          Infrastructure
+          Infrastructure Live Grid
         </h1>
 
         <p className="mt-1 max-w-2xl text-sm text-zinc-500">
-          Monitor infrastructure assets, system status, and connected monitoring
-          agents.
+          Real-time monitoring of all server assets.
         </p>
       </div>
 
@@ -85,17 +94,29 @@ function InfrastructurePage() {
               onClear={clearFilters}
             />
 
-            <InfrastructureTable
-              assets={filteredAssets}
-              onAssetSelect={setSelectedAssetId}
-            />
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {filteredAssets.map((asset) => (
+                <ServerMonitorCard
+                  key={asset.id}
+                  asset={asset}
+                  onSelect={setSelectedAsset}
+                  onAlert={handleAlert}
+                />
+              ))}
+            </div>
+
+            {filteredAssets.length === 0 && (
+              <div className="py-12 text-center text-sm text-zinc-500">
+                No assets found matching the current filters.
+              </div>
+            )}
           </>
         )}
       </div>
 
       <InfrastructureAssetDetails
-        assetId={selectedAssetId}
-        onClose={() => setSelectedAssetId(null)}
+        assetId={selectedAsset?.id ?? null}
+        onClose={() => setSelectedAsset(null)}
       />
     </div>
   );

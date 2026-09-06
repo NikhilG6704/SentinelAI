@@ -23,6 +23,7 @@ import type {
 } from "../../api/ai";
 
 import AIInsightCard from "./AIInsightCard";
+import AIRecoveryPanel from "./AIRecoveryPanel";
 
 interface AIAnalysisPanelProps {
   incidentId: number | null;
@@ -227,6 +228,19 @@ function AIAnalysisPanel({
           )}
         </div>
       )}
+
+      {recommendation &&
+        incidentId !== null &&
+        infrastructureAssetId !== null && (
+          <div className="rounded-xl border border-emerald-500/20 bg-zinc-900/40 p-5">
+            <AIRecoveryPanel
+              incidentId={incidentId}
+              infrastructureAssetId={infrastructureAssetId}
+              recommendation={recommendation}
+              rootCause={rootCause}
+            />
+          </div>
+        )}
     </div>
   );
 }
