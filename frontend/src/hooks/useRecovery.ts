@@ -3,9 +3,11 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   getRecoveryWorkflows,
   getRecoveryWorkflow,
+  createRecoveryWorkflow,
   executeRecoveryWorkflow,
   cancelRecoveryWorkflow,
   deleteRecoveryWorkflow,
+  type RecoveryWorkflowCreate,
   type RecoveryWorkflowFilters,
 } from "../api/recovery";
 
@@ -67,6 +69,21 @@ export function useDeleteRecoveryWorkflow() {
 
   return useMutation({
     mutationFn: (workflowId: number) => deleteRecoveryWorkflow(workflowId),
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["recovery", "workflows"],
+      });
+    },
+  });
+}
+
+export function useCreateRecoveryWorkflow() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload: RecoveryWorkflowCreate) =>
+      createRecoveryWorkflow(payload),
 
     onSuccess: () => {
       queryClient.invalidateQueries({
