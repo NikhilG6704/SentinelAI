@@ -16076,3 +16076,11 @@
 2026-08-19 09:55:32.900 | INFO     | retraining.trigger:trigger_retraining:26 - Retraining requested for failure_prediction
 2026-08-19 09:55:32.901 | INFO     | retraining.trigger:trigger_full_pipeline:43 - Starting full retraining pipeline.
 2026-08-19 09:55:32.901 | SUCCESS  | retraining.trigger:trigger_full_pipeline:56 - Full retraining pipeline completed.
+2026-09-06 21:20:01.749 | INFO     | anomaly_detection.trainer:train:40 - Starting training for IsolationForestDetector
+2026-09-06 21:20:01.922 | INFO     | anomaly_detection.isolation_forest:train:54 - Training Isolation Forest...
+2026-09-06 21:20:02.026 | SUCCESS  | anomaly_detection.isolation_forest:train:62 - Isolation Forest training completed.
+2026-09-06 21:20:02.042 | SUCCESS  | anomaly_detection.isolation_forest:save:120 - Model saved to /Users/nikhil/Code/SentinelAI/ai-engine/models/anomaly_detection/IsolationForestDetector.model
+2026-09-06 21:20:02.056 | SUCCESS  | anomaly_detection.trainer:train:99 - Training completed in 0.10 seconds.
+2026-09-06 21:22:31.446 | SUCCESS  | anomaly_detection.isolation_forest:load:133 - Model loaded from /Users/nikhil/Code/SentinelAI/ai-engine/models/anomaly_detection/IsolationForestDetector.model
+2026-09-06 21:22:31.446 | INFO     | anomaly_detection.inference:predict:51 - Running inference using IsolationForestDetector
+2026-09-06 21:22:31.467 | SUCCESS  | anomaly_detection.inference:predict:87 - Inference completed (4 samples).
